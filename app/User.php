@@ -108,4 +108,14 @@ class User extends Authenticatable
     public function country(){
         return $this->belongsTo('App\Country');
     }
+
+    public function missions()
+    {
+        return $this->hasMany(Mission::class);
+    }
+
+    public function vacations()
+    {
+        return $this->hasMany(Vacation::class);
+    }
 }

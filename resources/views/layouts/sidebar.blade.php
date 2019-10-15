@@ -97,6 +97,32 @@
         </li>
 
         </li>
+        <li class="has-sub"><a href="#"><i class="icon-map"></i><span class="title">Yearly Vacations</span></a>
+            <ul class="nav collapse">
+                @if(Auth::user()->role->name == 'Admin' && Auth::user()->team->name == 'HR')
+                    <li><a href="{{ route('holidays.create') }}"><span class="title">Add New</span></a></li>
+                @endif
+                <li><a href="{{ route('holidays.index') }}"><span class="title">View All</span></a></li>
+            </ul>
+        </li>
+        <li class="has-sub"><a href="#"><i class="icon-map"></i><span class="title">Missions</span></a>
+            <ul class="nav collapse">
+                @if(Auth::user()->role->name == 'Admin' && Auth::user()->team->name == 'HR')
+                    <li><a href="{{ route('missions.hr') }}"><span class="title">Users Request</span></a></li>
+                @endif
+                <li><a href="{{ route('missions.create') }}"><span class="title">Add New</span></a></li>
+                <li><a href="{{ route('missions.index') }}"><span class="title">View All</span></a></li>
+            </ul>
+        </li>
+        <li class="has-sub"><a href="#"><i class="icon-map"></i><span class="title">Vacations</span></a>
+            <ul class="nav collapse">
+                @if(Auth::user()->role->name == 'Admin' && Auth::user()->team->name == 'HR')
+                    <li><a href="{{ route('vacations.hr') }}"><span class="title">Users Request</span></a></li>
+                @endif
+                <li><a href="{{ route('vacations.create') }}"><span class="title">Add New</span></a></li>
+                <li><a href="{{ route('vacations.index') }}"><span class="title">View All</span></a></li>
+            </ul>
+        </li>
 
         <li><a href="{{ route('account.index') }}"><i class="icon-cog"></i><span class="title">Account Setting</span></a></li>
         <li><a href="{{ route('chat') }}"><i class="icon-chat"></i><span class="title">Chat</span></a></li>

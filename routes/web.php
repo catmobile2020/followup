@@ -120,5 +120,16 @@ Route::middleware(['admin'])->prefix('admin')->group(function () {
 //Country Routes
     Route::resource('/country', 'CountryController');
 
+//    Holiday Routes
+    Route::resource('/holidays', 'HolidayController');
+
+//    Mission Routes
+    Route::resource('/missions', 'MissionController');
+    Route::get('/users/missions/hr', 'MissionController@hr')->name('missions.hr');
+
+//    Vacation Routes
+    Route::resource('/vacations', 'VacationController');
+    Route::get('/users/vacations/hr', 'VacationController@hr')->name('vacations.hr');
+
 
 });

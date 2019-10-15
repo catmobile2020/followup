@@ -53,8 +53,8 @@
 <body class="page-error">
 <div class="page-error-container">
     <div class="page-error-content">
-        <div class="error-code">404</div>
-        <h4 class="text-center title">Oops, an error has occurred. Page not found!</h4>
+        <div class="error-code">401</div>
+        <h4 class="text-center title">Oops, unauthorized!</h4>
         <p class="text-center"><a href="/admin/home" class="btn btn-primary"> Go to dashboard</a></p>
     </div>
 </div>

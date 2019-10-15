@@ -142,3 +142,7 @@ Route::post('/uom/{survey}', 'api\SurveyController@vote');
 //Countries Route
 Route::get('/countries', 'api\CountryController@index');
 Route::get('/country/{country}/users', 'api\CountryController@countryUsers');
+
+
+//   Holiday Routes
+Route::apiResource('/holidays', 'api\HolidayController');
