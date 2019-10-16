@@ -9,14 +9,15 @@ use Illuminate\Http\Request;
 
 class MissionController extends Controller
 {
-    public function __construct()
-    {
-        $this->middleware('role:1,6',['except'=>['index','create','store']]);
-    }
+//    public function __construct()
+//    {
+//        $team_id = auth()->user()->team->id;
+//        $this->middleware("role:1,{$team_id}",['except'=>['index','create','store']]);
+//    }
 
     public function index()
     {
-        $rows = auth()->user()->missions()->paginate(20);
+        $rows = auth()->user()->missions()->latest()->paginate(20);
         return view('mission.index', compact('rows'));
     }
 
@@ -44,7 +45,7 @@ class MissionController extends Controller
         if ($request->ajax())
         {
             $mission = Mission::find($request->id);
-            $mission->update(['active'=>$request->active]);
+            $mission->update([$request->name=>$request->active]);
             return $mission->active;
         }
         $rows =Mission::latest()->paginate(20);

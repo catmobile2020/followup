@@ -13,7 +13,7 @@ class HolidayController extends Controller
 
     public function index()
     {
-        $rows = Holiday::paginate(20);
+        $rows = Holiday::all();
         return $this->showAll($rows,200);
     }
 
@@ -33,6 +33,6 @@ class HolidayController extends Controller
     public function destroy(Holiday $holiday)
     {
         $holiday->delete();
-        return response()->json(null,200);
+        return response()->json(null,204);
     }
 }

@@ -107,7 +107,7 @@
         </li>
         <li class="has-sub"><a href="#"><i class="icon-map"></i><span class="title">Missions</span></a>
             <ul class="nav collapse">
-                @if(Auth::user()->role->name == 'Admin' && Auth::user()->team->name == 'HR')
+                @if(Auth::user()->role->name == 'Admin')
                     <li><a href="{{ route('missions.hr') }}"><span class="title">Users Request</span></a></li>
                 @endif
                 <li><a href="{{ route('missions.create') }}"><span class="title">Add New</span></a></li>
@@ -116,7 +116,7 @@
         </li>
         <li class="has-sub"><a href="#"><i class="icon-map"></i><span class="title">Vacations</span></a>
             <ul class="nav collapse">
-                @if(Auth::user()->role->name == 'Admin' && Auth::user()->team->name == 'HR')
+                @if(Auth::user()->role->name == 'Admin')
                     <li><a href="{{ route('vacations.hr') }}"><span class="title">Users Request</span></a></li>
                 @endif
                 <li><a href="{{ route('vacations.create') }}"><span class="title">Add New</span></a></li>

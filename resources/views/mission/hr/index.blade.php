@@ -24,8 +24,8 @@
                                 <th>Date To</th>
                                 <th>Type</th>
                                 <th>Member Name</th>
-                                <th>Status</th>
-{{--                                <th>Settings</th>--}}
+                                <th>Team Manager Status</th>
+                                <th>HR Status</th>
                             </tr>
                             </thead>
                             <tbody>
@@ -37,13 +37,29 @@
                                     <td>{{ $row->date_to }}</td>
                                     <td>{{ $row->type }}</td>
                                     <td>{{ $row->user->name }}</td>
-                                    <td>
-                                        <select class="form-control changeStatus" name="active" data-id="{{$row->id}}">
-                                            <option value="0" {{$row->active == '0' ? 'selected' : ''}}>Pending</option>
-                                            <option value="1" {{$row->active == '1' ? 'selected' : ''}}>Agree</option>
-                                            <option value="-1" {{$row->active == '-1' ? 'selected' : ''}}>DisAgree</option>
-                                        </select>
-                                    </td>
+                                    @if(Auth::user()->role->name == 'Admin' && Auth::user()->team->name == 'HR')
+                                        <td>
+                                            <span class="badge badge-{{ $row->active == 1 ? 'success' : 'danger' }}">{{ $row->active_name}}</span>
+                                        </td>
+                                        <td>
+                                            <select class="form-control changeStatus" name="hr_active" data-id="{{$row->id}}">
+                                                <option value="0" {{$row->hr_active == '0' ? 'selected' : ''}}>Pending</option>
+                                                <option value="1" {{$row->hr_active == '1' ? 'selected' : ''}}>Agree</option>
+                                                <option value="-1" {{$row->hr_active == '-1' ? 'selected' : ''}}>DisAgree</option>
+                                            </select>
+                                        </td>
+                                    @else
+                                        <td>
+                                            <select class="form-control changeStatus" name="active" data-id="{{$row->id}}">
+                                                <option value="0" {{$row->active == '0' ? 'selected' : ''}}>Pending</option>
+                                                <option value="1" {{$row->active == '1' ? 'selected' : ''}}>Agree</option>
+                                                <option value="-1" {{$row->active == '-1' ? 'selected' : ''}}>DisAgree</option>
+                                            </select>
+                                        </td>
+                                        <td>
+                                            <span class="badge badge-{{ $row->hr_active == 1 ? 'success' : 'danger' }}">{{ $row->hr_active_name}}</span>
+                                        </td>
+                                    @endif
 {{--                                    <td>--}}
 {{--                                        <div class="small-12 column">--}}
 {{--                                            <a href="{{route('missions.edit',$row->id)}}" class="btn btn-success"><span class="fa fa-edit"></span> </a>--}}
@@ -63,8 +79,8 @@
                                 <th>Date To</th>
                                 <th>Type</th>
                                 <th>Member Name</th>
-                                <th>Status</th>
-{{--                                <th>Settings</th>--}}
+                                <th>Team Manager Status</th>
+                                <th>HR Status</th>
                             </tr>
                             </tfoot>
                         </table>

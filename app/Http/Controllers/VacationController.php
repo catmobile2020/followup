@@ -8,14 +8,15 @@ use Illuminate\Http\Request;
 
 class VacationController extends Controller
 {
-    public function __construct()
-    {
-        $this->middleware('role:1,6',['except'=>['index','create','store']]);
-    }
+//    public function __construct()
+//    {
+//        $team_id = auth()->user()->team->id;
+//        $this->middleware("role:1,{$team_id}",['except'=>['index','create','store']]);
+//    }
 
     public function index()
     {
-        $rows = auth()->user()->vacations()->paginate(20);
+        $rows = auth()->user()->vacations()->latest()->paginate(20);
         return view('vacation.index', compact('rows'));
     }
 
@@ -43,7 +44,7 @@ class VacationController extends Controller
         if ($request->ajax())
         {
             $vacation = Vacation::find($request->id);
-            $vacation->update(['active'=>$request->active]);
+            $vacation->update([$request->name=>$request->active]);
             return $vacation->active;
         }
         $rows =Vacation::latest()->paginate(20);

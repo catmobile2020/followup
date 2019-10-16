@@ -23,7 +23,8 @@
                                     <th>Date From</th>
                                     <th>Date To</th>
                                     <th>Type</th>
-                                    <th>Status</th>
+                                    <th>Team Manager Status</th>
+                                    <th>HR Status</th>
                                 </tr>
                                 </thead>
                                 <tbody>
@@ -35,13 +36,13 @@
                                         <td>{{ $row->date_to }}</td>
                                         <td>{{ $row->type }}</td>
                                         <td>
-                                            <span class="alert alert-{{ $row->active == 1 ? 'success' : 'danger' }}">{{ $row->active_name}}</span>
+                                            <span class="badge badge-{{ $row->active == 1 ? 'success' : 'danger' }}">{{ $row->active_name}}</span>
+                                        </td>
+                                        <td>
+                                            <span class="badge badge-{{ $row->hr_active == 1 ? 'success' : 'danger' }}">{{ $row->hr_active_name}}</span>
                                         </td>
                                     </tr>
-
                                 @endforeach
-
-
                                 </tbody>
                                 <tfoot>
                                 <tr role="row">
@@ -50,7 +51,8 @@
                                     <th>Date From</th>
                                     <th>Date To</th>
                                     <th>Type</th>
-                                    <th>Status</th>
+                                    <th>Team Manager Status</th>
+                                    <th>HR Status</th>
                                 </tr>
                                 </tfoot>
                             </table>

@@ -27,6 +27,7 @@ class HolidayRequest extends FormRequest
             'title'=>'required',
             'date'=>'required',
             'active'=>'required',
+            'active'=>'required',
         ];
     }
 }

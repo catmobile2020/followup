@@ -22,8 +22,8 @@
                                 <th>Date From</th>
                                 <th>Date to</th>
                                 <th>Member Name</th>
-                                <th>Status</th>
-{{--                                <th>Settings</th>--}}
+                                <th>Team Manager Status</th>
+                                <th>HR Status</th>
                             </tr>
                             </thead>
                             <tbody>
@@ -33,13 +33,30 @@
                                     <td>{{ $row->date_from }}</td>
                                     <td>{{ $row->date_to }}</td>
                                     <td>{{ $row->user->name }}</td>
+
+                                    @if(Auth::user()->role->name == 'Admin' && Auth::user()->team->name == 'HR')
+                                        <td>
+                                            <span class="badge badge-{{ $row->active == 1 ? 'success' : 'danger' }}">{{ $row->active_name}}</span>
+                                        </td>
                                     <td>
-                                        <select class="form-control changeStatus" name="active" data-id="{{$row->id}}">
-                                            <option value="0" {{$row->active == '0' ? 'selected' : ''}}>Pending</option>
-                                            <option value="1" {{$row->active == '1' ? 'selected' : ''}}>Agree</option>
-                                            <option value="-1" {{$row->active == '-1' ? 'selected' : ''}}>DisAgree</option>
+                                        <select class="form-control changeStatus" name="hr_active" data-id="{{$row->id}}">
+                                            <option value="0" {{$row->hr_active == '0' ? 'selected' : ''}}>Pending</option>
+                                            <option value="1" {{$row->hr_active == '1' ? 'selected' : ''}}>Agree</option>
+                                            <option value="-1" {{$row->hr_active == '-1' ? 'selected' : ''}}>DisAgree</option>
                                         </select>
                                     </td>
+                                    @else
+                                        <td>
+                                            <select class="form-control changeStatus" name="active" data-id="{{$row->id}}">
+                                                <option value="0" {{$row->active == '0' ? 'selected' : ''}}>Pending</option>
+                                                <option value="1" {{$row->active == '1' ? 'selected' : ''}}>Agree</option>
+                                                <option value="-1" {{$row->active == '-1' ? 'selected' : ''}}>DisAgree</option>
+                                            </select>
+                                        </td>
+                                        <td>
+                                            <span class="badge badge-{{ $row->hr_active == 1 ? 'success' : 'danger' }}">{{ $row->hr_active_name}}</span>
+                                        </td>
+                                    @endif
 {{--                                    <td>--}}
 {{--                                        <div class="small-12 column">--}}
 {{--                                            <a href="{{route('vacations.edit',$row->id)}}" class="btn btn-success"><span class="fa fa-edit"></span> </a>--}}
@@ -57,8 +74,8 @@
                                 <th>Date From</th>
                                 <th>Date to</th>
                                 <th>Member Name</th>
-                                <th>Status</th>
-{{--                                <th>Settings</th>--}}
+                               <th>Team Manager Status</th>
+                                <th>HR Status</th>
                             </tr>
                             </tfoot>
                         </table>
@@ -87,8 +104,9 @@
         $(document).on('change','.changeStatus',function () {
             let value = $(this).val();
             let id = $(this).data('id');
+            let name = $(this).attr('name');
             $.ajax({
-                data:{active:value,id:id},
+                data:{active:value,id:id,name:name},
                 success:function (result) {
                     console.log(result)
                 },

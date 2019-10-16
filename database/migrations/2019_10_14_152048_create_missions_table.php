@@ -20,6 +20,7 @@ class CreateMissionsTable extends Migration
             $table->date('date_to');
             $table->text('type');
             $table->boolean('active')->default(false);;
+            $table->boolean('hr_active')->default(false);;
 
             $table->integer('user_id')->unsigned()->index();
             $table->foreign('user_id')->references('id')->on('users');

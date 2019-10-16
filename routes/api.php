@@ -146,3 +146,15 @@ Route::get('/country/{country}/users', 'api\CountryController@countryUsers');
 
 //   Holiday Routes
 Route::apiResource('/holidays', 'api\HolidayController');
+
+//   Missions Routes
+Route::apiResource('/missions', 'api\MissionController');
+Route::get('/users/missions/hr', 'api\MissionController@hr');
+Route::get('/users/missions/manager-change-status/{mission}', 'api\MissionController@managerChangeStatus');
+Route::get('/users/missions/hr-change-status/{mission}', 'api\MissionController@HrChangeStatus');
+
+//   Vacations Routes
+Route::apiResource('/vacations', 'api\VacationController');
+Route::get('/users/vacations/hr', 'api\VacationController@hr');
+Route::get('/users/vacations/manager-change-status/{vacation}', 'api\VacationController@managerChangeStatus');
+Route::get('/users/vacations/hr-change-status/{vacation}', 'api\VacationController@HrChangeStatus');
