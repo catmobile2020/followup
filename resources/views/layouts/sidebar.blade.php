@@ -123,7 +123,16 @@
                 <li><a href="{{ route('vacations.index') }}"><span class="title">View All</span></a></li>
             </ul>
         </li>
-
+        <li class="has-sub"><a href="#"><i class="icon-map"></i><span class="title">Requests form</span></a>
+            <ul class="nav collapse">
+                @if(Auth::user()->role->name == 'Admin')
+                    <li><a href="{{ route('forms.create') }}"><span class="title">Add New form</span></a></li>
+                    <li><a href="{{ route('forms.index') }}"><span class="title">View All forms</span></a></li>
+                @endif
+                    <li><a href="{{ route('tasks.create') }}"><span class="title">Add New Request</span></a></li>
+                    <li><a href="{{ route('tasks.index') }}"><span class="title">My Requests</span></a></li>
+            </ul>
+        </li>
         <li><a href="{{ route('account.index') }}"><i class="icon-cog"></i><span class="title">Account Setting</span></a></li>
         <li><a href="{{ route('chat') }}"><i class="icon-chat"></i><span class="title">Chat</span></a></li>
         <li><a href="{{ route('document.index') }}"><i class="icon-upload-cloud"></i><span class="title">Document Center</span></a></li>

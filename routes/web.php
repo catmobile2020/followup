@@ -131,5 +131,12 @@ Route::middleware(['admin'])->prefix('admin')->group(function () {
     Route::resource('/vacations', 'VacationController');
     Route::get('/users/vacations/hr', 'VacationController@hr')->name('vacations.hr');
 
+//    Request Routes
+    Route::resource('/request/forms', 'RequestFormController');
+    Route::resource('/request/{form}/elements', 'RequestElementController');
+
+    Route::resource('/request/tasks', 'TaskController');
+    Route::get('/tasks/change/form', 'TaskController@changeForm')->name('tasks.change-form');
+
 
 });

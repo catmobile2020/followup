@@ -24,4 +24,9 @@ class Team extends Model
         return $this->belongsToMany('App\Skill', 'team_skill');
     }
 
+
+    public function requestsForm()
+    {
+        return $this->hasMany(RequestForm::class);
+    }
 }

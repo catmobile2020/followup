@@ -17,8 +17,6 @@ class CommentController extends Controller
      */
     public function index(Post $post)
     {
-        //
-
         return response()->json(['data'=> $post->comments()->paginate(10), "state"=>1]);
     }
 

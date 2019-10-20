@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class HolidayRequest extends FormRequest
+class TaskRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -24,9 +24,7 @@ class HolidayRequest extends FormRequest
     public function rules()
     {
         return [
-            'title'=>'required',
-            'date'=>'required',
-            'active'=>'required',
+            'request_form_id'=>'required'
         ];
     }
 }
