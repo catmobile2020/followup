@@ -29,6 +29,7 @@ class TaskController extends Controller
 
     public function store(TaskRequest $request)
     {
+        dd($request->all());
         $form = RequestForm::findOrfail($request->request_form_id);
         $elements = $form->elements()->pluck('id')->toArray();
         $values = serialize($request->only($elements));
@@ -75,6 +76,7 @@ class TaskController extends Controller
     {
         $form = RequestForm::findOrfail($request->request_form_id);
         $elements = $form->elements;
-        return view('request.task.elements',compact('elements'))->render();
+        $task = new Task;
+        return view('request.task.elements',compact('elements','task'))->render();
     }
 }

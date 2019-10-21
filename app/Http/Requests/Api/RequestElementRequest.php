@@ -15,7 +15,7 @@ class RequestElementRequest extends FormRequest
      */
     public function authorize()
     {
-        return false;
+        return true;
     }
 
     /**
@@ -26,7 +26,6 @@ class RequestElementRequest extends FormRequest
     public function rules()
     {
         return [
-            'user_id'=>'required',
             'title'=>'required',
             'type'=>'required',
             'value'=>'required',

@@ -4,21 +4,25 @@ namespace App\Http\Controllers\api;
 
 use App\Http\Requests\Api\RequestFormRequest;
 use App\RequestForm;
+use App\Traits\ApiResponser;
+use App\User;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
 class RequestFormController extends Controller
 {
-    public function index()
+    use ApiResponser;
+
+    public function index(Request $request)
     {
-        $user_team = auth()->user()->team;
-        $rows = $user_team->requestsForm()->paginate(20);
+        $user_team = User::findOrfail($request->user_id)->team;
+        $rows = $user_team->requestsForm;
         return $this->showAll($rows,200);
     }
 
     public function store(RequestFormRequest $request)
     {
-        $user_team = auth()->user()->team;
+        $user_team = User::findOrfail($request->user_id)->team;
         $form =$user_team->requestsForm()->create($request->all());
 
         return $this->showOne($form);
@@ -29,14 +33,11 @@ class RequestFormController extends Controller
     {
         $form->update($request->all());
         return $this->showOne($form);
-
-
-
     }
-
-    public function destroy(RequestForm $form)
-    {
-        $form->delete();
-        return response()->json(null,204);
-    }
+//
+//    public function destroy(RequestForm $form)
+//    {
+//        $form->delete();
+//        return response()->json(null,204);
+//    }
 }

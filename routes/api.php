@@ -158,3 +158,12 @@ Route::apiResource('/vacations', 'api\VacationController');
 Route::get('/users/vacations/hr', 'api\VacationController@hr');
 Route::get('/users/vacations/manager-change-status/{vacation}', 'api\VacationController@managerChangeStatus');
 Route::get('/users/vacations/hr-change-status/{vacation}', 'api\VacationController@HrChangeStatus');
+
+//   requests forms Routes
+Route::apiResource('/requests/forms', 'api\RequestFormController');
+
+//   requests form elements Routes
+Route::apiResource('/requests/{form}/elements', 'api\RequestElementController');
+
+//   requests tasks Routes
+Route::apiResource('/request/tasks', 'api\TaskController');

@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class Task extends Model
 {
     protected $fillable=['values','request_form_id','user_id'];
+    protected $appends=['values_array'];
 
     public function user()
     {
