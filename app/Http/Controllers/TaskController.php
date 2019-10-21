@@ -29,7 +29,6 @@ class TaskController extends Controller
 
     public function store(TaskRequest $request)
     {
-        dd($request->all());
         $form = RequestForm::findOrfail($request->request_form_id);
         $elements = $form->elements()->pluck('id')->toArray();
         $values = serialize($request->only($elements));
