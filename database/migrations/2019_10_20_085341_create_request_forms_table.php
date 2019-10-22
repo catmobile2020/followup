@@ -15,7 +15,7 @@ class CreateRequestFormsTable extends Migration
     {
         Schema::create('request_forms', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('title');
+            $table->text('title');
             $table->unsignedInteger('team_id');
             $table->foreign('team_id')->references('id')->on('teams');
             $table->timestamps();

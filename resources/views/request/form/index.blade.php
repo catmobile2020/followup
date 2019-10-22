@@ -29,7 +29,7 @@
                             @foreach($rows as $row)
                                 <tr class="gradeA" role="row">
                                     <td>{{ $loop->iteration}}</td>
-                                    <td>{{ $row->title}}</td>
+                                    <td>{!! $row->title !!}</td>
                                     @if(Auth::user()->role->name == 'Admin' && Auth::user()->team->id == $user_team->id)
                                         <td>{!! Form::open(['route'=>['forms.destroy', $row], 'method'=>'DELETE']) !!}
                                             <div class="small-12 column">

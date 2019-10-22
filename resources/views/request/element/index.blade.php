@@ -30,7 +30,7 @@
                             @foreach($rows as $row)
                                 <tr class="gradeA" role="row">
                                     <td>{{ $loop->iteration}}</td>
-                                    <td>{{ $row->title}}</td>
+                                    <td>{!! $row->title !!}</td>
                                     <td>{{ $row->type }}</td>
                                     <td>{{ $row->value }}</td>
                                     <td>{{ $row->validation ? 'YES' : 'NO' }}</td>

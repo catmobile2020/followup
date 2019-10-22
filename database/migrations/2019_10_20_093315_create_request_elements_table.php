@@ -15,7 +15,7 @@ class CreateRequestElementsTable extends Migration
     {
         Schema::create('request_elements', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('title');
+            $table->text('title');
             $table->string('type');
             $table->text('value');
             $table->boolean('validation');
