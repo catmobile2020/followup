@@ -9,7 +9,7 @@
             </select>
         @elseif ($element->type == 'checkbox' and $element->value != null)
             @foreach(explode(',',$element->value) as $val)
-                <input type="checkbox" name="{{$element->id}}[]" @if (is_array($task->values_array[$element->id]) and in_array($val,$task->values_array[$element->id])) checked @endif value="{{$val}}" placeholder="{{$element->placeholder}}" class="form-control" {{$element->validation ? 'required' : ''}}/>{{$val}}
+                <input type="checkbox" name="{{$element->id}}[]" @if (is_array($task->values_array[$element->id]) and in_array($val,$task->values_array[$element->id])) checked @endif value="{{$val}}" placeholder="{{$element->placeholder}}" class="form-control" @if ($loop->first){{$element->validation ? 'required' : ''}}@endif/>{{$val}}
             @endforeach
         @elseif ($element->type == 'text')
             <input type="text" name="{{$element->id}}" value="{{$task->values_array[$element->id]}}" placeholder="{{$element->placeholder}}" class="form-control" {{$element->validation ? 'required' : ''}}/>

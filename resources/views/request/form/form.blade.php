@@ -23,6 +23,17 @@
                         {!! Form::label('title', 'Title') !!}
                         {!! Form::text('title', null, ['placeholder'=>'Enter Title !', 'class'=>'form-control']) !!}
                     </div>
+                    @if (Auth::user()->team->name == 'IT')
+                        <div class="form-group">
+                            <label>Select Department</label>
+                            <select name="team_id" class="form-control">
+                                <option value selected disabled>Select Department</option>
+                                @foreach($departments as $department)
+                                    <option value="{{$department->id}}">{{$department->name}}</option>
+                                @endforeach
+                            </select>
+                        </div>
+                    @endif
                 {!! Form::submit('Submit!' , ['class'=>'btn btn-primary']) !!}
                 {!! Form::close() !!}
             </div>

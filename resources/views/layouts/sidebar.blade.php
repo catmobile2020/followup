@@ -125,7 +125,7 @@
         </li>
         <li class="has-sub"><a href="#"><i class="icon-map"></i><span class="title">Requests form</span></a>
             <ul class="nav collapse">
-                @if(Auth::user()->role->name == 'Admin')
+                @if(Auth::user()->role->name == 'Admin' or Auth::user()->team->name == 'IT')
                     <li><a href="{{ route('forms.create') }}"><span class="title">Add New form</span></a></li>
                     <li><a href="{{ route('forms.index') }}"><span class="title">View All forms</span></a></li>
                 @endif

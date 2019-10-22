@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\RequestFormRequest;
 use App\RequestForm;
+use App\Team;
 use Illuminate\Http\Request;
 
 class RequestFormController extends Controller
@@ -22,12 +23,19 @@ class RequestFormController extends Controller
             'url'=> route('forms.store'),
             'method'=> 'POST',
         ];
-        return view('request.form.form',compact('form','form_action'));
+        $departments = Team::all();
+        return view('request.form.form',compact('form','form_action','departments'));
     }
 
     public function store(RequestFormRequest $request)
     {
-        $user_team = auth()->user()->team;
+        if ($request->has('team_id'))
+        {
+            $user_team = Team::findOrfail($request->team_id);
+        }else
+        {
+            $user_team = auth()->user()->team;
+        }
         $user_team->requestsForm()->create($request->all());
 
         return redirect('/admin/request/forms')->with('status', $request->title.' Added Successfully');
@@ -41,7 +49,8 @@ class RequestFormController extends Controller
             'url'=> route('forms.update',$form->id),
             'method'=> 'PATCH',
         ];
-        return view('request.form.form', compact('form','form_action'));
+        $departments = Team::all();
+        return view('request.form.form', compact('form','form_action','departments'));
     }
 
 

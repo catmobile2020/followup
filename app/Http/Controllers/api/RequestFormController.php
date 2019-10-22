@@ -4,6 +4,7 @@ namespace App\Http\Controllers\api;
 
 use App\Http\Requests\Api\RequestFormRequest;
 use App\RequestForm;
+use App\Team;
 use App\Traits\ApiResponser;
 use App\User;
 use Illuminate\Http\Request;
@@ -22,7 +23,13 @@ class RequestFormController extends Controller
 
     public function store(RequestFormRequest $request)
     {
-        $user_team = User::findOrfail($request->user_id)->team;
+        if ($request->has('team_id'))
+        {
+            $user_team = Team::findOrfail($request->team_id);
+        }else
+        {
+            $user_team = User::findOrfail($request->user_id)->team;
+        }
         $form =$user_team->requestsForm()->create($request->all());
 
         return $this->showOne($form);
