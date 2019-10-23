@@ -27,7 +27,7 @@
                             @foreach($rows as $row)
                                 <tr class="gradeA" role="row">
                                     <td>{{ $loop->iteration}}</td>
-                                    <td>{{ $row->form->title}}</td>
+                                    <td>{!! $row->form->title !!}</td>
                                     <td>{!! Form::open(['route'=>['tasks.destroy', $row], 'method'=>'DELETE']) !!}
                                         <div class="small-12 column">
                                             <button type="submit" class="btn btn-danger"><span class="fa fa-trash-o"></span> </button>

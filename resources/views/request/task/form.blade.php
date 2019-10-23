@@ -28,7 +28,7 @@
                             <select name="request_form_id" class="form-control changeForm">
                                 <option value selected disabled>Select Form</option>
                                 @foreach($forms as $val=>$name)
-                                    <option value="{{$val}}">{{$name}}</option>
+                                    <option value="{{$val}}">{!! $name !!}</option>
                                 @endforeach
                             </select>
                         </div>

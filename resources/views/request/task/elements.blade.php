@@ -1,6 +1,6 @@
 @foreach($elements as $element)
     <div class="form-group">
-        <label>{{$element->title}}</label>
+        <label>{!! $element->title !!}</label>
         @if($element->type == 'select' and $element->value != null)
             <select name="{{$element->id}}" class="form-control" {{$element->validation ? 'required' : ''}}>
                 @foreach(explode(',',$element->value) as $val)
