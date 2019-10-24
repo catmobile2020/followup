@@ -24,6 +24,7 @@ class TaskRequest extends FormRequest
     public function rules()
     {
         return [
+            'po'=>'required',
             'request_form_id'=>'required'
         ];
     }

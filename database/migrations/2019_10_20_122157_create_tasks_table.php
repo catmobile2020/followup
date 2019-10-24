@@ -15,6 +15,8 @@ class CreateTasksTable extends Migration
     {
         Schema::create('tasks', function (Blueprint $table) {
             $table->increments('id');
+            $table->text('po');
+            $table->boolean('active')->default(false);;
             $table->text('values');
             $table->unsignedInteger('request_form_id');
             $table->foreign('request_form_id')->references('id')->on('request_forms');

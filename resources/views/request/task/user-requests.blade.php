@@ -24,7 +24,6 @@
                                 <th>Form Title</th>
                                 <th>Request Owner</th>
                                 <th>Status</th>
-                                <th>Settings</th>
                             </tr>
                             </thead>
                             <tbody>
@@ -36,17 +35,15 @@
                                     <td>{!! $row->form->title !!}</td>
                                     <td>{!! $row->user->name !!}</td>
                                     <td>
-                                        <span class="badge badge-{{ $row->active == 1 ? 'success' : 'danger' }}">{{ $row->active_name}}</span>
-                                    </td>
-                                    <td>
-                                    @if (!$row->active == 1)
-                                        {!! Form::open(['route'=>['tasks.destroy', $row], 'method'=>'DELETE']) !!}
-                                            <div class="small-12 column">
-                                                {{--                                            <button type="submit" class="btn btn-danger"><span class="fa fa-trash-o"></span> </button>--}}
-                                                <a href="{{route('tasks.edit',$row->id)}}" class="btn btn-success"><span class="fa fa-edit"></span> </a>
-                                            </div>
-                                            {!! Form::close() !!}
-                                    @endif
+                                        @if(Auth::user()->role->name == 'Admin' && Auth::user()->team->name == 'Accounts')
+                                        <select class="form-control changeStatus" name="active" data-id="{{$row->id}}">
+                                            <option value="0" {{$row->active == '0' ? 'selected' : ''}}>Pending</option>
+                                            <option value="1" {{$row->active == '1' ? 'selected' : ''}}>Agree</option>
+                                            <option value="-1" {{$row->active == '-1' ? 'selected' : ''}}>DisAgree</option>
+                                        </select>
+                                        @else
+                                            <span class="badge badge-{{ $row->active == 1 ? 'success' : 'danger' }}">{{ $row->active_name}}</span>
+                                        @endif
                                     </td>
                                 </tr>
 
@@ -59,7 +56,6 @@
                                 <th>Department Name</th>
                                 <th>Form Title</th>
                                 <th>Request Owner</th>
-                                <th>Status</th>
                                 <th>Settings</th>
                             </tr>
                             </tfoot>
@@ -86,6 +82,21 @@
     <script src="{{URL::asset('js/plugins/datatables/vfs_fonts.js')}}"></script>
     <script src="{{URL::asset('js/plugins/datatables/extensions/Buttons/js/buttons.html5.js')}}"></script>
     <script src="{{URL::asset('js/plugins/datatables/extensions/Buttons/js/buttons.colVis.js')}}"></script>
+    <script>
+        $(document).on('change','.changeStatus',function () {
+            let value = $(this).val();
+            let id = $(this).data('id');
+            $.ajax({
+                data:{active:value,id:id},
+                success:function (result) {
+                    console.log(result)
+                },
+                error:function (errors) {
+                    console.log(errors)
+                }
+            });
+        });
+    </script>
     <script>
         $(document).ready(function () {
             $('.dataTables-example').DataTable({

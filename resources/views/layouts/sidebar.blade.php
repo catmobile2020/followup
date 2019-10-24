@@ -131,8 +131,12 @@
                 @endif
                     <li><a href="{{ route('tasks.create') }}"><span class="title">Add New Request</span></a></li>
                     <li><a href="{{ route('tasks.index') }}"><span class="title">My Requests</span></a></li>
+                    <li><a href="{{ route('tasks.user-requests') }}"><span class="title">User Requests</span></a></li>
             </ul>
         </li>
+        @if(Auth::user()->role->name == 'Admin' && Auth::user()->team->name == 'Accounts')
+            <li><a href="{{ route('tasks.accounts-reviews') }}"><i class="icon-cog"></i><span class="title">Users Requests Tasks</span></a></li>
+        @endif
         <li><a href="{{ route('account.index') }}"><i class="icon-cog"></i><span class="title">Account Setting</span></a></li>
         <li><a href="{{ route('chat') }}"><i class="icon-chat"></i><span class="title">Chat</span></a></li>
         <li><a href="{{ route('document.index') }}"><i class="icon-upload-cloud"></i><span class="title">Document Center</span></a></li>

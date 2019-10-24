@@ -134,4 +134,10 @@ class TeamController extends Controller
         }
         return $this->showAll($users);
     }
+
+    public function teamForms(Team $team)
+    {
+        $rows = $team->requestsForm;
+        return $this->showAll($rows);
+    }
 }

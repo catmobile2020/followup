@@ -42,6 +42,7 @@ Route::get('/skill/{skill}/users', 'api\SkillController@skillUsers');
 //Teams Route
 Route::get('/departments', 'api\TeamController@index');
 Route::get('/department/{team}/users', 'api\TeamController@teamUsers');
+Route::get('/department/{team}/forms', 'api\TeamController@teamForms');
 
 //Roles Route
 Route::get('/roles', 'api\RoleController@index');
@@ -167,3 +168,6 @@ Route::apiResource('/requests/{form}/elements', 'api\RequestElementController');
 
 //   requests tasks Routes
 Route::apiResource('/request/tasks', 'api\TaskController');
+Route::get('/tasks/user/requests', 'api\TaskController@userRequests');
+Route::get('/tasks/accounts/reviews', 'api\TaskController@accountsReviews');
+Route::post('/tasks/accounts/{task}/change-status', 'api\TaskController@changeStatus');

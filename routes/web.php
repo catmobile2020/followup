@@ -136,7 +136,9 @@ Route::middleware(['admin'])->prefix('admin')->group(function () {
     Route::resource('/request/{form}/elements', 'RequestElementController');
 
     Route::resource('/request/tasks', 'TaskController');
-    Route::get('/tasks/change/form', 'TaskController@changeForm')->name('tasks.change-form');
+    Route::get('/change/request-form', 'TaskController@changeForm')->name('tasks.change-form');
+    Route::get('/tasks/user/requests', 'TaskController@userRequests')->name('tasks.user-requests');
+    Route::get('/tasks/accounts/reviews', 'TaskController@accountsReviews')->name('tasks.accounts-reviews');
 
 
 });

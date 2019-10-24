@@ -29,4 +29,9 @@ class Team extends Model
     {
         return $this->hasMany(RequestForm::class);
     }
+
+    public function usersRequests()
+    {
+        return $this->hasManyThrough(Task::class,RequestForm::class);
+    }
 }
