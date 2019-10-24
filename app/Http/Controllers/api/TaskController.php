@@ -48,6 +48,8 @@ class TaskController extends Controller
     public function store(TaskRequest $request)
     {
         $form = RequestForm::findOrfail($request->request_form_id);
+        if (!count($form->elements))
+            return response()->json(['data'=>'Form Not Have Elements'],200);
         $elements = $form->elements()->pluck('id')->toArray();
         $values = serialize($request->only($elements));
 
@@ -55,6 +57,7 @@ class TaskController extends Controller
             'request_form_id'=>$request->request_form_id,
             'values'=>$values,
             'user_id'=>auth()->id(),
+            'po'=>$request->po,
         ]);
 
         return $this->showOne($task);
@@ -66,7 +69,7 @@ class TaskController extends Controller
         $form = $task->form;
         $elements = $form->elements()->pluck('id')->toArray();
         $values = serialize($request->only($elements));
-        $task->update(['values'=>$values,]);
+        $task->update(['values'=>$values,'po'=>$request->po]);
         return $this->showOne($form);
     }
 

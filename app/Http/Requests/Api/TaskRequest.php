@@ -27,6 +27,7 @@ class TaskRequest extends FormRequest
     {
         return [
             'user_id'=>'required',
+            'po'=>'required',
             'request_form_id'=>'required'
         ];
     }

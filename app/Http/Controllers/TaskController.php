@@ -90,7 +90,7 @@ class TaskController extends Controller
         $form = $task->form;
         $elements = $form->elements()->pluck('id')->toArray();
         $values = serialize($request->only($elements));
-        $task->update(['values'=>$values,]);
+        $task->update(['values'=>$values,'po'=>$request->po]);
         return redirect('/admin/request/tasks')->with('edit', $task->title);
     }
 
