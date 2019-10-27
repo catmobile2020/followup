@@ -10,6 +10,18 @@ use App\Http\Controllers\Controller;
 class RoleController extends Controller
 {
     use ApiResponser;
+
+    /**
+     *
+     * @SWG\Get(
+     *      tags={"Roles"},
+     *      path="/roles",
+     *      summary="Get all roles",
+     *
+     *      @SWG\Response(response=200, description="objects"),
+     * )
+     */
+
     public function index()
     {
 
@@ -24,7 +36,22 @@ class RoleController extends Controller
         return $this->showAll($roles);
 
     }
-
+    /**
+     *
+     * @SWG\Get(
+     *      tags={"Roles"},
+     *      path="/role/{role}/users",
+     *      summary="Get all users for specific role",
+     *       @SWG\Parameter(
+     *         name="role",
+     *         in="path",
+     *         required=true,
+     *         type="integer",
+     *         format="integer",
+     *      ),
+     *      @SWG\Response(response=200, description="objects"),
+     * )
+     */
     public function roleUsers(Role $role){
 
 

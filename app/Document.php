@@ -17,6 +17,13 @@ class Document extends Model
             'status',
         ];
 
+    protected $hidden = [
+        'updated_at',
+        'status',
+        'user_id',
+        'type',
+    ];
+
     public function user()
     {
         return $this->belongsTo('App\User');

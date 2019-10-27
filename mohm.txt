@@ -1,0 +1,8 @@
+$schedule->call(function () {
+    Post::where('published_at', '<=', Carbon::now()->subDays(30))->delete();
+})->daily();
+
+
+https://stackoverflow.com/questions/44041894/automatic-delete-date-for-posts-in-laravel-5-4
+
+https://laravel.com/docs/5.4/scheduling

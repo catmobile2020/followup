@@ -10,6 +10,16 @@ use App\Http\Controllers\Controller;
 class SkillController extends Controller
 {
     use ApiResponser;
+    /**
+     *
+     * @SWG\Get(
+     *      tags={"Skills"},
+     *      path="/skills",
+     *      summary="Get all skills",
+     *
+     *      @SWG\Response(response=200, description="objects"),
+     * )
+     */
     public function index()
     {
         if(empty($_GET['page']) || $_GET['page']==''){
@@ -23,6 +33,22 @@ class SkillController extends Controller
 
     }
 
+    /**
+     *
+     * @SWG\Get(
+     *      tags={"Skills"},
+     *      path="/skill/{skill}/users",
+     *      summary="Get all users for specific skill",
+     *       @SWG\Parameter(
+     *         name="skill",
+     *         in="path",
+     *         required=true,
+     *         type="integer",
+     *         format="integer",
+     *      ),
+     *      @SWG\Response(response=200, description="object"),
+     * )
+     */
 
     public function skillUsers(Skill $skill){
 

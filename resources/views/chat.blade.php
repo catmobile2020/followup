@@ -37,6 +37,24 @@
     .box-header.with-border {
         border-bottom: 1px solid #c7c7c7;
     }
+    .search{
+            width: 100%;
+    padding: 7px 25px;
+    background-color: #dddddd;
+    border: 0;
+    margin: 0;
+    color: #212121;
+    }
+    .no-result {
+    text-align: center;
+    width: 100%;
+    padding: 5px 20px;
+    background: #f0f0f0;
+    color: #727171;
+    font-weight: 600;
+    display: block;
+    margin: 15px 0px;
+    }
     </style>
 @stop
 @section('content')
@@ -47,7 +65,11 @@
                     <div class="panel-heading">CAT Members</div>
                     <div class="panel-body" style="padding:0px;">
                         <ul class="list-group">
-                            <li class="list-group-item" v-for="chatList in chatLists" style="cursor: pointer;" @click="chat(chatList)">@{{ chatList.name }}  <i class="fa fa-circle pull-right" v-bind:class="{'online': (chatList.online=='Y')}"></i>  <span class="badge" v-if="chatList.msgCount !=0">@{{ chatList.msgCount }}</span></li>
+                            <div class="search-wrapper">
+                            <input class="search" type="text" v-model="search" placeholder="Search Users.."/>
+                          </div>
+                          <span class="no-result" v-if="!filteredChatLists.length">No user with this name</span>
+                            <li class="list-group-item" v-for="chatList in filteredChatLists" style="cursor: pointer;" @click="chat(chatList)">@{{ chatList.name }}  <i class="fa fa-circle pull-right" v-bind:class="{'online': (chatList.online=='Y')}"></i>  <span class="badge" v-if="chatList.msgCount !=0">@{{ chatList.msgCount }}</span></li>
                             <li class="list-group-item" v-if="socketConnected.status == false">@{{ socketConnected.msg }}</li>
                         </ul>
                     </div>

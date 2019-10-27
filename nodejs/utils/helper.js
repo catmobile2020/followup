@@ -26,7 +26,7 @@ class Helper{
 	getChatList(userId){
 		try {
 			return Promise.all([
-				this.db.query(`SELECT id, name, socket_id, online, updated_at, image_profile as image FROM users WHERE id != ?`, [userId])
+				this.db.query(`SELECT id, name, socket_id, online, updated_at FROM users WHERE id != ?`, [userId])
 			]).then( (response) => {
 				return {
 					chatlist : response[0]

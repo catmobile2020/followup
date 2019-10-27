@@ -4,6 +4,7 @@ var socket = io(WS_URL, { query: "id= "+USER_ID });
 var app = new Vue({
     el: '#chatApp',
     data: {
+        search: '',
         user_id: USER_ID,
         chatLists: [],
         chatBox: [],
@@ -62,7 +63,14 @@ var app = new Vue({
 
             });
         }
+    },
+    computed: {
+    filteredChatLists() {
+      return this.chatLists.filter(chatList => {
+        return chatList.name.toLowerCase().includes(this.search.toLowerCase());
+      });
     }
+  }
 });
 socket.on('connect', function(data){
     app.socketConnected.status = true;

@@ -1,0 +1,571 @@
+{
+    "swagger": "2.0",
+    "info": {
+        "title": "Followup API",
+        "version": "1.0.0"
+    },
+    "basePath": "/api",
+    "paths": {
+        "/reset-password": {
+            "post": {
+                "tags": [
+                    "Auth"
+                ],
+                "summary": "Forgot password",
+                "parameters": [
+                    {
+                        "name": "email",
+                        "in": "formData",
+                        "required": true,
+                        "type": "string",
+                        "format": "string",
+                        "default": "email"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "success"
+                    }
+                }
+            }
+        },
+        "/login": {
+            "post": {
+                "tags": [
+                    "Auth"
+                ],
+                "summary": "login",
+                "parameters": [
+                    {
+                        "name": "email",
+                        "in": "formData",
+                        "required": true,
+                        "type": "string",
+                        "format": "string",
+                        "default": "email/username"
+                    },
+                    {
+                        "name": "password",
+                        "in": "formData",
+                        "required": true,
+                        "type": "string",
+                        "format": "string",
+                        "default": "123456"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "user Data"
+                    }
+                }
+            }
+        },
+        "/roles": {
+            "get": {
+                "tags": [
+                    "Roles"
+                ],
+                "summary": "Get all roles",
+                "responses": {
+                    "200": {
+                        "description": "objects"
+                    }
+                }
+            }
+        },
+        "/role/{role}/users": {
+            "get": {
+                "tags": [
+                    "Roles"
+                ],
+                "summary": "Get all users for specific role",
+                "parameters": [
+                    {
+                        "name": "role",
+                        "in": "path",
+                        "required": true,
+                        "type": "integer",
+                        "format": "integer"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "objects"
+                    }
+                }
+            }
+        },
+        "/skills": {
+            "get": {
+                "tags": [
+                    "Skills"
+                ],
+                "summary": "Get all skills",
+                "responses": {
+                    "200": {
+                        "description": "objects"
+                    }
+                }
+            }
+        },
+        "/skill/{skill}/users": {
+            "get": {
+                "tags": [
+                    "Skills"
+                ],
+                "summary": "Get all users for specific skill",
+                "parameters": [
+                    {
+                        "name": "skill",
+                        "in": "path",
+                        "required": true,
+                        "type": "integer",
+                        "format": "integer"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "object"
+                    }
+                }
+            }
+        },
+        "/suppliers": {
+            "get": {
+                "tags": [
+                    "Suppliers"
+                ],
+                "summary": "Get all Suppliers",
+                "responses": {
+                    "200": {
+                        "description": "objects"
+                    }
+                }
+            }
+        },
+        "/supplier/{supplier}": {
+            "get": {
+                "tags": [
+                    "Suppliers"
+                ],
+                "summary": "Get one supplier",
+                "parameters": [
+                    {
+                        "name": "supplier",
+                        "in": "path",
+                        "required": true,
+                        "type": "integer",
+                        "format": "integer"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "object"
+                    }
+                }
+            }
+        },
+        "/departments": {
+            "get": {
+                "tags": [
+                    "Teams"
+                ],
+                "summary": "Get all teams",
+                "responses": {
+                    "200": {
+                        "description": "objects"
+                    }
+                }
+            }
+        },
+        "/department/{department}/users": {
+            "get": {
+                "tags": [
+                    "Teams"
+                ],
+                "summary": "Get all users in specific team/Department",
+                "parameters": [
+                    {
+                        "name": "team",
+                        "in": "path",
+                        "required": true,
+                        "type": "integer",
+                        "format": "integer"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "objects"
+                    }
+                }
+            }
+        },
+        "/users": {
+            "get": {
+                "tags": [
+                    "Users"
+                ],
+                "summary": "Get all users",
+                "responses": {
+                    "200": {
+                        "description": "objects"
+                    }
+                }
+            }
+        },
+        "/user/add": {
+            "post": {
+                "tags": [
+                    "Auth"
+                ],
+                "summary": "register",
+                "parameters": [
+                    {
+                        "name": "name",
+                        "in": "formData",
+                        "required": true,
+                        "type": "string",
+                        "format": "string",
+                        "default": "Ahmed"
+                    },
+                    {
+                        "name": "username",
+                        "in": "formData",
+                        "required": true,
+                        "type": "string",
+                        "format": "string",
+                        "default": "ahmed.adel"
+                    },
+                    {
+                        "name": "email",
+                        "in": "formData",
+                        "required": true,
+                        "type": "string",
+                        "format": "string",
+                        "default": "admin@domai.com"
+                    },
+                    {
+                        "name": "phone",
+                        "in": "formData",
+                        "required": true,
+                        "type": "string",
+                        "format": "string",
+                        "default": "01278389852"
+                    },
+                    {
+                        "name": "address",
+                        "in": "formData",
+                        "required": true,
+                        "type": "string",
+                        "format": "string",
+                        "default": "537 corniche el nile"
+                    },
+                    {
+                        "name": "bio",
+                        "in": "formData",
+                        "required": true,
+                        "type": "string",
+                        "format": "string",
+                        "default": "User Bio/ Summary"
+                    },
+                    {
+                        "name": "role_id",
+                        "in": "formData",
+                        "required": true,
+                        "type": "integer",
+                        "format": "integer",
+                        "default": "1"
+                    },
+                    {
+                        "name": "team_id",
+                        "in": "formData",
+                        "required": true,
+                        "type": "integer",
+                        "format": "integer",
+                        "default": "1"
+                    },
+                    {
+                        "name": "country_id",
+                        "in": "formData",
+                        "required": true,
+                        "type": "integer",
+                        "format": "integer",
+                        "default": "1"
+                    },
+                    {
+                        "name": "password",
+                        "in": "formData",
+                        "required": true,
+                        "type": "string",
+                        "format": "string",
+                        "default": "123456"
+                    },
+                    {
+                        "name": "password_confirmation",
+                        "in": "formData",
+                        "required": true,
+                        "type": "string",
+                        "format": "string",
+                        "default": "123456"
+                    },
+                    {
+                        "name": "skills",
+                        "in": "formData",
+                        "required": true,
+                        "type": "array",
+                        "items": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "user"
+                    }
+                }
+            }
+        },
+        "/update-user-image": {
+            "post": {
+                "tags": [
+                    "Users"
+                ],
+                "summary": "Update user profile with base64 image",
+                "parameters": [
+                    {
+                        "name": "user_id",
+                        "in": "formData",
+                        "required": true,
+                        "type": "integer",
+                        "format": "integer",
+                        "default": "1"
+                    },
+                    {
+                        "name": "image",
+                        "in": "formData",
+                        "required": true,
+                        "type": "string",
+                        "format": "string",
+                        "default": "base64(image)"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "imagePath"
+                    }
+                }
+            }
+        },
+        "/change-password": {
+            "post": {
+                "tags": [
+                    "Auth"
+                ],
+                "summary": "change-password",
+                "parameters": [
+                    {
+                        "name": "password",
+                        "in": "formData",
+                        "required": true,
+                        "type": "string",
+                        "format": "string",
+                        "default": "123456"
+                    },
+                    {
+                        "name": "newPassword",
+                        "in": "formData",
+                        "required": true,
+                        "type": "string",
+                        "format": "string",
+                        "default": "123456"
+                    },
+                    {
+                        "name": "newPassword_confirmation",
+                        "in": "formData",
+                        "required": true,
+                        "type": "string",
+                        "format": "string",
+                        "default": "123456"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "success"
+                    }
+                }
+            }
+        },
+        "/update-player-id": {
+            "post": {
+                "tags": [
+                    "Users"
+                ],
+                "summary": "Update user player_id",
+                "parameters": [
+                    {
+                        "name": "user_id",
+                        "in": "formData",
+                        "required": true,
+                        "type": "integer",
+                        "format": "integer",
+                        "default": "1"
+                    },
+                    {
+                        "name": "player_id",
+                        "in": "formData",
+                        "required": true,
+                        "type": "string",
+                        "format": "string",
+                        "default": "454f5d4f-d78s7d8-8787dd"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "updated"
+                    }
+                }
+            }
+        },
+        "/user-info/{user_id}": {
+            "get": {
+                "tags": [
+                    "Users"
+                ],
+                "summary": "Get full user information",
+                "parameters": [
+                    {
+                        "name": "user_id",
+                        "in": "path",
+                        "required": true,
+                        "type": "integer",
+                        "format": "integer"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "object"
+                    }
+                }
+            }
+        },
+        "/update-user": {
+            "post": {
+                "tags": [
+                    "Users"
+                ],
+                "summary": "Update user info",
+                "parameters": [
+                    {
+                        "name": "user_id",
+                        "in": "formData",
+                        "required": true,
+                        "type": "integer",
+                        "format": "integer",
+                        "default": "1"
+                    },
+                    {
+                        "name": "name",
+                        "in": "formData",
+                        "required": true,
+                        "type": "string",
+                        "format": "string",
+                        "default": "ahmed adel"
+                    },
+                    {
+                        "name": "phone",
+                        "in": "formData",
+                        "required": true,
+                        "type": "string",
+                        "format": "string",
+                        "default": "01278389852"
+                    },
+                    {
+                        "name": "address",
+                        "in": "formData",
+                        "required": true,
+                        "type": "string",
+                        "format": "string",
+                        "default": "537 corniche el nile"
+                    },
+                    {
+                        "name": "bio",
+                        "in": "formData",
+                        "required": true,
+                        "type": "string",
+                        "format": "string",
+                        "default": "User Bio/ Summary"
+                    },
+                    {
+                        "name": "role_id",
+                        "in": "formData",
+                        "required": true,
+                        "type": "integer",
+                        "format": "integer",
+                        "default": "1"
+                    },
+                    {
+                        "name": "team_id",
+                        "in": "formData",
+                        "required": true,
+                        "type": "integer",
+                        "format": "integer",
+                        "default": "1"
+                    },
+                    {
+                        "name": "country_id",
+                        "in": "formData",
+                        "required": true,
+                        "type": "integer",
+                        "format": "integer",
+                        "default": "1"
+                    },
+                    {
+                        "name": "skills",
+                        "in": "formData",
+                        "required": true,
+                        "type": "array",
+                        "items": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "user"
+                    }
+                }
+            }
+        },
+        "/delete-user/{user}": {
+            "post": {
+                "tags": [
+                    "Users"
+                ],
+                "summary": "Update user info",
+                "parameters": [
+                    {
+                        "name": "user",
+                        "in": "path",
+                        "required": true,
+                        "type": "integer",
+                        "format": "integer",
+                        "default": "1"
+                    },
+                    {
+                        "name": "password",
+                        "in": "formData",
+                        "required": true,
+                        "type": "string",
+                        "format": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "user"
+                    }
+                }
+            }
+        }
+    },
+    "definitions": {}
+}

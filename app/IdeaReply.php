@@ -12,11 +12,6 @@ class IdeaReply extends Model
         'description',
     ];
 
-    protected $hidden = [
-        'updated_at',
-        'idea_id'
-    ];
-
 
     public function user(){
         return $this->belongsTo('App\User');

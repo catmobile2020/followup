@@ -2,8 +2,8 @@
     "dbConfig": {
         "host": "localhost",
         "port": 3306,
-        "user": "root",
-		"password": "",
-		"database": "followup"
+        "user": "heartgat_follow",
+		"password": "!@#$%^012Follow",
+		"database": "heartgat_follow"
     }
 }

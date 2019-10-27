@@ -23,7 +23,7 @@ class Socket{
                     chatList: result.chatlist
                 });
 
-                socket.broadcast.emit('chatListResConnect', {
+                socket.broadcast.emit('chatListRes', {
                     userConnected: true,
                     userId: userId,
                     socket_id: socket.id
@@ -75,7 +75,7 @@ class Socket{
 
             socket.on('disconnect', async () => {
                 const isLoggedOut = await helper.logoutUser(socket.id);
-                socket.broadcast.emit('chatListResDisonected', {
+                socket.broadcast.emit('chatListRes', {
                     userDisconnected: true,
                     socket_id: socket.id
                 });

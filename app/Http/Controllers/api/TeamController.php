@@ -10,6 +10,16 @@ use App\Http\Controllers\Controller;
 class TeamController extends Controller
 {
     use ApiResponser;
+    /**
+     *
+     * @SWG\Get(
+     *      tags={"Teams"},
+     *      path="/departments",
+     *      summary="Get all teams",
+     *
+     *      @SWG\Response(response=200, description="objects"),
+     * )
+     */
     public function index()
     {
 
@@ -48,7 +58,22 @@ class TeamController extends Controller
         return $this->showAll($teams);
 
     }
-
+    /**
+     *
+     * @SWG\Get(
+     *      tags={"Teams"},
+     *      path="/department/{department}/users",
+     *      summary="Get all users in specific team/Department",
+     *       @SWG\Parameter(
+     *         name="team",
+     *         in="path",
+     *         required=true,
+     *         type="integer",
+     *         format="integer",
+     *      ),
+     *      @SWG\Response(response=200, description="objects"),
+     * )
+     */
     public function teamUsers(Team $team){
 
 

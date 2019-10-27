@@ -8,7 +8,7 @@ const socketEvents = require('./utils/socket');
 class Server {
 	constructor() {
 		this.port = process.env.PORT || 6001;
-        this.host = process.env.HOST || `127.0.0.1`;
+        this.host = process.env.HOST || `160.153.246.213`;
 
         this.app = express();
         this.http = http.Server(this.app);

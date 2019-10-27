@@ -15,7 +15,16 @@ class UserController extends Controller
 {
     //
     use ApiResponser;
-
+    /**
+     *
+     * @SWG\Get(
+     *      tags={"Users"},
+     *      path="/users",
+     *      summary="Get all users",
+     *
+     *      @SWG\Response(response=200, description="objects"),
+     * )
+     */
     public function index()
     {
         if(empty($_GET['page']) || $_GET['page']==''){
@@ -105,10 +114,108 @@ class UserController extends Controller
             }
             return response()->json(['data' => $users, 'state' => 1], 200);
         }
-        
+
         return $this->showAll($users);
 
     }
+    /**
+     *
+     * @SWG\Post(
+     *      tags={"Auth"},
+     *      path="/user/add",
+     *      summary="register",
+     *      @SWG\Parameter(
+     *         name="name",
+     *         in="formData",
+     *         required=true,
+     *         type="string",
+     *         format="string",
+     *         default="Ahmed",
+     *      ),@SWG\Parameter(
+     *         name="username",
+     *         in="formData",
+     *         required=true,
+     *         type="string",
+     *         format="string",
+     *         default="ahmed.adel",
+     *      ),@SWG\Parameter(
+     *         name="email",
+     *         in="formData",
+     *         required=true,
+     *         type="string",
+     *         format="string",
+     *         default="admin@domai.com",
+     *      ),@SWG\Parameter(
+     *         name="phone",
+     *         in="formData",
+     *         required=true,
+     *         type="string",
+     *         format="string",
+     *         default="01278389852",
+     *      ),@SWG\Parameter(
+     *         name="address",
+     *         in="formData",
+     *         required=true,
+     *         type="string",
+     *         format="string",
+     *         default="537 corniche el nile",
+     *      ),@SWG\Parameter(
+     *         name="bio",
+     *         in="formData",
+     *         required=true,
+     *         type="string",
+     *         format="string",
+     *         default="User Bio/ Summary",
+     *      ),@SWG\Parameter(
+     *         name="role_id",
+     *         in="formData",
+     *         required=true,
+     *         type="integer",
+     *         format="integer",
+     *         default="1",
+     *      ),@SWG\Parameter(
+     *         name="team_id",
+     *         in="formData",
+     *         required=true,
+     *         type="integer",
+     *         format="integer",
+     *         default="1",
+     *      ),@SWG\Parameter(
+     *         name="country_id",
+     *         in="formData",
+     *         required=true,
+     *         type="integer",
+     *         format="integer",
+     *         default="1",
+     *      ),
+     *      @SWG\Parameter(
+     *         name="password",
+     *         in="formData",
+     *         required=true,
+     *         type="string",
+     *         format="string",
+     *         default="123456",
+     *      ),
+     *     @SWG\Parameter(
+     *         name="password_confirmation",
+     *         in="formData",
+     *         required=true,
+     *         type="string",
+     *         format="string",
+     *         default="123456",
+     *      ),
+     *     @SWG\Parameter(
+     *         name="skills",
+     *         in="formData",
+     *         required=true,
+     *          type = "array",
+     *      @SWG\Items(
+     *                       type="integer",
+     *              ),
+     *      ),
+     *      @SWG\Response(response=200, description="user"),
+     * )
+     */
     public function addNew(Request $request){
         $this->validate($request, [
             'name' => 'required|string|max:255',
@@ -139,6 +246,31 @@ class UserController extends Controller
 
         return response()->json(['data' => 'User Added successfully', 'state'=>'1']);
     }
+    /**
+     *
+     * @SWG\Post(
+     *      tags={"Users"},
+     *      path="/update-user-image",
+     *      summary="Update user profile with base64 image",
+     *      @SWG\Parameter(
+     *         name="user_id",
+     *         in="formData",
+     *         required=true,
+     *         type="integer",
+     *         format="integer",
+     *         default="1",
+     *      ),
+     *     @SWG\Parameter(
+     *         name="image",
+     *         in="formData",
+     *         required=true,
+     *         type="string",
+     *         format="string",
+     *         default="base64(image)",
+     *      ),
+     *      @SWG\Response(response=200, description="imagePath"),
+     * )
+     */
     public function updatePhoto(Request $request){
         $this->validate($request , [
             'user_id' => 'required',
@@ -166,7 +298,39 @@ class UserController extends Controller
         }
 
     }
-
+    /**
+     *
+     * @SWG\Post(
+     *      tags={"Auth"},
+     *      path="/change-password",
+     *      summary="change-password",
+     *      @SWG\Parameter(
+     *         name="password",
+     *         in="formData",
+     *         required=true,
+     *         type="string",
+     *         format="string",
+     *         default="123456",
+     *      ),
+     *     @SWG\Parameter(
+     *         name="newPassword",
+     *         in="formData",
+     *         required=true,
+     *         type="string",
+     *         format="string",
+     *         default="123456",
+     *      ),
+     *     @SWG\Parameter(
+     *         name="newPassword_confirmation",
+     *         in="formData",
+     *         required=true,
+     *         type="string",
+     *         format="string",
+     *         default="123456",
+     *      ),
+     *      @SWG\Response(response=200, description="success"),
+     * )
+     */
     public function changePassword(Request $request)
     {
         $this->validate($request, [
@@ -191,7 +355,31 @@ class UserController extends Controller
             return response()->json(["data"=>"Wrong Password", "state"=>0]);
         }
     }
-
+    /**
+     *
+     * @SWG\Post(
+     *      tags={"Users"},
+     *      path="/update-player-id",
+     *      summary="Update user player_id",
+     *      @SWG\Parameter(
+     *         name="user_id",
+     *         in="formData",
+     *         required=true,
+     *         type="integer",
+     *         format="integer",
+     *         default="1",
+     *      ),
+     *     @SWG\Parameter(
+     *         name="player_id",
+     *         in="formData",
+     *         required=true,
+     *         type="string",
+     *         format="string",
+     *         default="454f5d4f-d78s7d8-8787dd",
+     *      ),
+     *      @SWG\Response(response=200, description="updated"),
+     * )
+     */
     public function updatePlayerId(Request $request){
         $this->validate($request , [
             'user_id' => 'required',
@@ -205,7 +393,22 @@ class UserController extends Controller
 
         return response()->json(["data"=>"Data Updated Successfully", "state"=>1]);
     }
-
+    /**
+     *
+     * @SWG\Get(
+     *      tags={"Users"},
+     *      path="/user-info/{user_id}",
+     *      summary="Get full user information",
+     *      @SWG\Parameter(
+     *         name="user_id",
+     *         in="path",
+     *         required=true,
+     *         type="integer",
+     *         format="integer",
+     *      ),
+     *      @SWG\Response(response=200, description="object"),
+     * )
+     */
     public function userInfo($user){
         $user = User::findOrFail($user);
         if(count($user->photos) > 0){
@@ -248,7 +451,82 @@ class UserController extends Controller
 
         return $this->showOne($user, 200);
     }
-
+    /**
+     *
+     * @SWG\Post(
+     *      tags={"Users"},
+     *      path="/update-user",
+     *      summary="Update user info",
+     *      @SWG\Parameter(
+     *         name="user_id",
+     *         in="formData",
+     *         required=true,
+     *         type="integer",
+     *         format="integer",
+     *         default="1",
+     *      ),@SWG\Parameter(
+     *         name="name",
+     *         in="formData",
+     *         required=true,
+     *         type="string",
+     *         format="string",
+     *         default="ahmed adel",
+     *      ),@SWG\Parameter(
+     *         name="phone",
+     *         in="formData",
+     *         required=true,
+     *         type="string",
+     *         format="string",
+     *         default="01278389852",
+     *      ),@SWG\Parameter(
+     *         name="address",
+     *         in="formData",
+     *         required=true,
+     *         type="string",
+     *         format="string",
+     *         default="537 corniche el nile",
+     *      ),@SWG\Parameter(
+     *         name="bio",
+     *         in="formData",
+     *         required=true,
+     *         type="string",
+     *         format="string",
+     *         default="User Bio/ Summary",
+     *      ),@SWG\Parameter(
+     *         name="role_id",
+     *         in="formData",
+     *         required=true,
+     *         type="integer",
+     *         format="integer",
+     *         default="1",
+     *      ),@SWG\Parameter(
+     *         name="team_id",
+     *         in="formData",
+     *         required=true,
+     *         type="integer",
+     *         format="integer",
+     *         default="1",
+     *      ),@SWG\Parameter(
+     *         name="country_id",
+     *         in="formData",
+     *         required=true,
+     *         type="integer",
+     *         format="integer",
+     *         default="1",
+     *      ),
+     *
+     *     @SWG\Parameter(
+     *         name="skills",
+     *         in="formData",
+     *         required=true,
+     *          type = "array",
+     *      @SWG\Items(
+     *                       type="integer",
+     *              ),
+     *      ),
+     *      @SWG\Response(response=200, description="user"),
+     * )
+     */
     public function updateUser(Request $request){
         $this->validate($request, [
             'user_id'=>'required',
@@ -308,7 +586,29 @@ class UserController extends Controller
 
         return $this->showOne($user, 200);
     }
-
+    /**
+     *
+     * @SWG\Post(
+     *      tags={"Users"},
+     *      path="/delete-user/{user}",
+     *      summary="Update user info",
+     *      @SWG\Parameter(
+     *         name="user",
+     *         in="path",
+     *         required=true,
+     *         type="integer",
+     *         format="integer",
+     *         default="1",
+     *      ),@SWG\Parameter(
+     *         name="password",
+     *         in="formData",
+     *         required=true,
+     *         type="string",
+     *         format="string",
+     *      ),
+     *      @SWG\Response(response=200, description="user"),
+     * )
+     */
     public function deleteAccount(Request $request, User $user)
     {
 

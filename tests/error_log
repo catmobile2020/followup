@@ -1,0 +1,1 @@
+[22-May-2019 12:14:24 UTC] PHP Fatal error:  Class 'Illuminate\Foundation\Testing\TestCase' not found in /home/heartgatecp/public_html/followup/tests/TestCase.php on line 8

@@ -1,1 +1,1 @@
-<h1>Follow UP System</h1>
+<h1> WE 100 App</h1>

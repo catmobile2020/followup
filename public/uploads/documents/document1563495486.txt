@@ -1,0 +1,7 @@
+-- ideas dashboard / APIs 3 days
+-- corporate Module
+	-- [About - mission - vision] 2 days
+	-- Newsfeeds 4 days
+	-- HR Module [poll/ survey] 2 days
+	-- user of the month voting 2 days 
+  

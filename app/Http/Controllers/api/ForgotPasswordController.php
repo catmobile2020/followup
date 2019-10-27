@@ -9,7 +9,24 @@ use Illuminate\Support\Facades\Password;
 
 class ForgotPasswordController extends Controller
 {
-    //
+    /**
+     *
+     * @SWG\Post(
+     *      tags={"Auth"},
+     *      path="/reset-password",
+     *      summary="Forgot password",
+     *
+     *      @SWG\Parameter(
+     *         name="email",
+     *         in="formData",
+     *         required=true,
+     *         type="string",
+     *         format="string",
+     *         default="email",
+     *      ),
+     *      @SWG\Response(response=200, description="success"),
+     * )
+     */
     public function reset(Request $request)
     {
         $this->validate($request , [

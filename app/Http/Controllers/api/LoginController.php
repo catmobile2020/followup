@@ -14,6 +14,33 @@ class LoginController extends Controller
     //
     use AuthenticatesUsers;
 
+    /**
+     *
+     * @SWG\Post(
+     *      tags={"Auth"},
+     *      path="/login",
+     *      summary="login",
+     *
+     *      @SWG\Parameter(
+     *         name="email",
+     *         in="formData",
+     *         required=true,
+     *         type="string",
+     *         format="string",
+     *         default="email/username",
+     *      ),
+     *      @SWG\Parameter(
+     *         name="password",
+     *         in="formData",
+     *         required=true,
+     *         type="string",
+     *         format="string",
+     *         default="123456",
+     *      ),
+     *      @SWG\Response(response=200, description="user Data"),
+     * )
+     */
+
     public function login(Request $request){
 
         $this->validate($request , [
@@ -52,7 +79,7 @@ class LoginController extends Controller
             if($user->active == 0){
                 return response()->json(['data' => 'Your Account has been deactivated.. please call support for help!!', 'state'=>'0']);
             }else{
-                return response()->json(['data' => $user, 'state'=>'1']);  
+                return response()->json(['data' => $user, 'state'=>'1']);
             }
 
         }
