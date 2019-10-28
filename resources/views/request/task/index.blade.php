@@ -11,6 +11,9 @@
 
     <div class="row">
         <div class="col-lg-12">
+            <a href="{{ route('tasks.create') }}" class="btn btn-info"><span class="title">Add New Request</span></a>
+        </div>
+        <div class="col-lg-12">
             <div class="panel panel-default">
 
                 <div class="panel-body">

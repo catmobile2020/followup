@@ -11,8 +11,10 @@
 
     <div class="row">
         <div class="col-lg-12">
+            <a href="{{ route('forms.create') }}" class="btn btn-info"><span class="title">Add New form</span></a>
+        </div>
+        <div class="col-lg-12">
             <div class="panel panel-default">
-
                 <div class="panel-body">
                     <div class="table-responsive">
                         <table class="table table-striped table-bordered table-hover dataTables-example dataTable" id="DataTables_Table_0" aria-describedby="DataTables_Table_0_info" role="grid">

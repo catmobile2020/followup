@@ -126,12 +126,11 @@
         <li class="has-sub"><a href="#"><i class="icon-map"></i><span class="title">Requests form</span></a>
             <ul class="nav collapse">
                 @if(Auth::user()->role->name == 'Admin' or Auth::user()->team->name == 'IT')
-                    <li><a href="{{ route('forms.create') }}"><span class="title">Add New form</span></a></li>
                     <li><a href="{{ route('forms.index') }}"><span class="title">View All forms</span></a></li>
+                    <li><a href="{{ route('tasks.user-requests') }}"><span class="title">Receive User Requests</span></a></li>
                 @endif
-                    <li><a href="{{ route('tasks.create') }}"><span class="title">Add New Request</span></a></li>
-                    <li><a href="{{ route('tasks.index') }}"><span class="title">My Requests</span></a></li>
-                    <li><a href="{{ route('tasks.user-requests') }}"><span class="title">User Requests</span></a></li>
+                    <li><a href="{{ route('tasks.index') }}"><span class="title">Sent Requests</span></a></li>
+
             </ul>
         </li>
         @if(Auth::user()->role->name == 'Admin' && Auth::user()->team->name == 'Accounts')
