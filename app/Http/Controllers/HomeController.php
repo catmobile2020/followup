@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Group;
 use App\Material;
+use App\Post;
 use App\Role;
 use App\Skill;
 use App\Team;
@@ -37,7 +38,7 @@ class HomeController extends Controller
         $teams = Team::all()->count();
         $deact_users = User::where('active',0)->count();
         $all_users = User::all()->count();
-
-        return view('home', compact( 'deact_users', 'all_users', 'all_grp', 'skills', 'teams', 'roles'));
+        $posts = Post::where('type', 0)->latest()->get();
+        return view('home', compact( 'deact_users', 'all_users', 'all_grp', 'skills', 'teams', 'roles','posts'));
     }
 }
