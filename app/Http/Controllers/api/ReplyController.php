@@ -11,11 +11,60 @@ use App\Http\Controllers\Controller;
 class ReplyController extends Controller
 {
 
+    /**
+     *
+     * @SWG\Get(
+     *      tags={"replies"},
+     *      path="/comment/{comment}/replies",
+     *      summary="comment replies",
+     *      @SWG\Parameter(
+     *         name="comment",
+     *         in="path",
+     *         required=true,
+     *         type="integer",
+     *         format="integer",
+     *      ),
+     *      @SWG\Response(response=200, description="objects"),
+     * ),
+     * @param Comment $comment
+     * @return \Illuminate\Http\JsonResponse
+     */
     public function index(Comment $comment)
     {
         return response()->json(['data'=> $comment->replies()->paginate(10), "state"=>1]);
     }
 
+    /**
+     *
+     * @SWG\Post(
+     *      tags={"replies"},
+     *      path="/comment/{comment}/replies",
+     *      summary="add new replie",
+     *      @SWG\Parameter(
+     *         name="comment",
+     *         in="path",
+     *         required=true,
+     *         type="integer",
+     *         format="integer",
+     *      ),@SWG\Parameter(
+     *         name="user_id",
+     *         in="formData",
+     *         required=true,
+     *         type="integer",
+     *         format="integer",
+     *      ),@SWG\Parameter(
+     *         name="body",
+     *         in="formData",
+     *         required=true,
+     *         type="string",
+     *         format="string",
+     *      ),
+     *      @SWG\Response(response=200, description="objects"),
+     * ),
+     * @param Request $request
+     * @param Comment $comment
+     * @return \Illuminate\Http\JsonResponse
+     */
     public function store(Request $request, Comment $comment)
     {
         $this->validate($request , [
@@ -42,7 +91,37 @@ class ReplyController extends Controller
 
     }
 
-
+    /**
+     *
+     * @SWG\Post(
+     *      tags={"replies"},
+     *      path="/reply/{reply}/update",
+     *      summary="update replie",
+     *      @SWG\Parameter(
+     *         name="reply",
+     *         in="path",
+     *         required=true,
+     *         type="integer",
+     *         format="integer",
+     *      ),@SWG\Parameter(
+     *         name="user_id",
+     *         in="formData",
+     *         required=true,
+     *         type="integer",
+     *         format="integer",
+     *      ),@SWG\Parameter(
+     *         name="body",
+     *         in="formData",
+     *         required=true,
+     *         type="string",
+     *         format="string",
+     *      ),
+     *      @SWG\Response(response=200, description="objects"),
+     * ),
+     * @param Request $request
+     * @param Reply $reply
+     * @return \Illuminate\Http\JsonResponse
+     */
     public function update(Request $request, Reply $reply)
     {
         $this->validate($request , [
@@ -89,6 +168,32 @@ class ReplyController extends Controller
     }
 
 
+    /**
+     *
+     * @SWG\Post(
+     *      tags={"replies"},
+     *      path="/reply/{reply}/delete",
+     *      summary="delete replie",
+     *      @SWG\Parameter(
+     *         name="reply",
+     *         in="path",
+     *         required=true,
+     *         type="integer",
+     *         format="integer",
+     *      ),@SWG\Parameter(
+     *         name="user_id",
+     *         in="formData",
+     *         required=true,
+     *         type="integer",
+     *         format="integer",
+     *      ),
+     *      @SWG\Response(response=200, description="objects"),
+     * ),
+     * @param Request $request
+     * @param Reply $reply
+     * @return \Illuminate\Http\JsonResponse
+     * @throws \Exception
+     */
     public function destroy(Request $request, Reply $reply)
     {
         $this->validate($request , [

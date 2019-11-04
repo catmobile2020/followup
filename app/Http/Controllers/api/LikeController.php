@@ -11,9 +11,22 @@ use App\Http\Controllers\Controller;
 class LikeController extends Controller
 {
     /**
-     * Display a listing of the resource.
      *
-     * @return \Illuminate\Http\Response
+     * @SWG\Get(
+     *      tags={"likes"},
+     *      path="/post/{post}/likes",
+     *      summary="post likes",
+     *      @SWG\Parameter(
+     *         name="post",
+     *         in="path",
+     *         required=true,
+     *         type="integer",
+     *         format="integer",
+     *      ),
+     *      @SWG\Response(response=200, description="objects"),
+     * ),
+     * @param Post $post
+     * @return \Illuminate\Http\JsonResponse
      */
     public function index(Post $post)
     {
@@ -21,13 +34,31 @@ class LikeController extends Controller
         return response()->json(['data'=> $post->likes()->paginate(10), "state"=>1]);
     }
 
-
-
     /**
-     * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
+     * @SWG\Post(
+     *      tags={"likes"},
+     *      path="/post/{post}/likes",
+     *      summary="add like",
+     *      @SWG\Parameter(
+     *         name="post",
+     *         in="path",
+     *         required=true,
+     *         type="integer",
+     *         format="integer",
+     *      ),@SWG\Parameter(
+     *         name="user_id",
+     *         in="formData",
+     *         required=true,
+     *         type="integer",
+     *         format="integer",
+     *      ),
+     *      @SWG\Response(response=200, description="objects"),
+     * ),
+     * @param Request $request
+     * @param Post $post
+     * @return \Illuminate\Http\JsonResponse
+     * @throws \Exception
      */
     public function store(Request $request, Post $post)
     {
@@ -51,13 +82,37 @@ class LikeController extends Controller
     }
 
 
-
-
     /**
-     * Remove the specified resource from storage.
      *
-     * @param  \App\Like  $like
-     * @return \Illuminate\Http\Response
+     * @SWG\Post(
+     *      tags={"likes"},
+     *      path="/like/{like}/delete",
+     *      summary="delete like",
+     *      @SWG\Parameter(
+     *         name="like",
+     *         in="path",
+     *         required=true,
+     *         type="integer",
+     *         format="integer",
+     *      ),@SWG\Parameter(
+     *         name="user_id",
+     *         in="formData",
+     *         required=true,
+     *         type="integer",
+     *         format="integer",
+     *      ),@SWG\Parameter(
+     *         name="post_id",
+     *         in="formData",
+     *         required=true,
+     *         type="integer",
+     *         format="integer",
+     *      ),
+     *      @SWG\Response(response=200, description="objects"),
+     * ),
+     * @param Request $request
+     * @param Like $like
+     * @return \Illuminate\Http\JsonResponse
+     * @throws \Exception
      */
     public function destroy(Request $request, Like $like)
     {

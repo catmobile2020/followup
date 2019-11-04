@@ -11,11 +11,20 @@ use App\Traits\ApiResponser;
 
 class PostController extends Controller
 {
-
     use ApiResponser;
+
+    /**
+     *
+     * @SWG\Get(
+     *      tags={"posts"},
+     *      path="/posts",
+     *      summary="Get all posts",
+     *
+     *      @SWG\Response(response=200, description="objects"),
+     * )
+     */
     public function index()
     {
-
         if(empty($_GET['page']) || $_GET['page']==''){
             $posts = Post::orderBY('id', 'desc')->get();
             foreach ($posts as $post){
@@ -49,6 +58,35 @@ class PostController extends Controller
 
     }
 
+    /**
+     *
+     * @SWG\Post(
+     *      tags={"posts"},
+     *      path="/posts",
+     *      summary="add new post",
+     *      @SWG\Parameter(
+     *         name="user_id",
+     *         in="formData",
+     *         required=true,
+     *         type="integer",
+     *         format="integer",
+     *      ),@SWG\Parameter(
+     *         name="body",
+     *         in="formData",
+     *         required=true,
+     *         type="string",
+     *         format="string",
+     *      ),@SWG\Parameter(
+     *         name="image",
+     *         in="formData",
+     *         required=true,
+     *         type="file",
+     *      ),
+     *      @SWG\Response(response=200, description="objects"),
+     * ),
+     * @param Request $request
+     * @return \Illuminate\Http\JsonResponse
+     */
     public function store(Request $request)
     {
 
@@ -81,6 +119,36 @@ class PostController extends Controller
 
         return response()->json(['data'=> $postData, 'state'=>1]);
     }
+
+    /**
+     *
+     * @SWG\Post(
+     *      tags={"posts"},
+     *      path="/corporate-posts",
+     *      summary="corporate-posts",
+     *      @SWG\Parameter(
+     *         name="user_id",
+     *         in="formData",
+     *         required=true,
+     *         type="integer",
+     *         format="integer",
+     *      )
+     * ,@SWG\Parameter(
+     *         name="body",
+     *         in="formData",
+     *         required=true,
+     *         type="string",
+     *         format="string",
+     *      ),
+     * @SWG\Parameter(
+     *         name="image",
+     *         in="formData",
+     *         required=true,
+     *         type="file",
+     *      ),
+     *      @SWG\Response(response=200, description="objects"),
+     * )
+     */
     public function corporateStore(Request $request)
     {
 
@@ -114,6 +182,40 @@ class PostController extends Controller
         return response()->json(['data'=> $postData, 'state'=>1]);
     }
 
+    /**
+     *
+     * @SWG\Post(
+     *      tags={"posts"},
+     *      path="/update-post/{post}",
+     *      summary="update-post",
+     *@SWG\Parameter(
+     *         name="post",
+     *         in="path",
+     *         required=true,
+     *         type="integer",
+     *         format="integer",
+     *      ),
+     * @SWG\Parameter(
+     *         name="user_id",
+     *         in="formData",
+     *         required=true,
+     *         type="integer",
+     *         format="integer",
+     *      ),@SWG\Parameter(
+     *         name="body",
+     *         in="formData",
+     *         required=true,
+     *         type="string",
+     *         format="string",
+     *      ),@SWG\Parameter(
+     *         name="image",
+     *         in="formData",
+     *         required=true,
+     *         type="file",
+     *      ),
+     *      @SWG\Response(response=200, description="objects"),
+     * ),
+     */
     public function update(Request $request, Post $post)
     {
         $this->validate($request , [
@@ -156,6 +258,23 @@ class PostController extends Controller
         }
     }
 
+    /**
+     *
+     * @SWG\Post(
+     *      tags={"posts"},
+     *      path="/delete-post/{post}",
+     *      summary="delete-post",
+     *@SWG\Parameter(
+     *         name="post",
+     *         in="path",
+     *         required=true,
+     *         type="integer",
+     *         format="integer",
+     *      ),
+     *      @SWG\Response(response=200, description="objects"),
+     * ),
+     */
+
     public function destroy(Post $post)
     {
 
@@ -195,6 +314,22 @@ class PostController extends Controller
 
     }
 
+    /**
+     *
+     * @SWG\Post(
+     *      tags={"posts"},
+     *      path="/user/{user}/posts",
+     *      summary="user posts",
+     * @SWG\Parameter(
+     *         name="user",
+     *         in="path",
+     *         required=true,
+     *         type="integer",
+     *         format="integer",
+     *      ),
+     *      @SWG\Response(response=200, description="objects"),
+     * ),
+     */
     public function userPosts(User $user)
     {
         $posts = $user->posts()->paginate(10);

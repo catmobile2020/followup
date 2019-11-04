@@ -146,28 +146,43 @@ Route::get('/country/{country}/users', 'api\CountryController@countryUsers');
 
 
 //   Holiday Routes
-Route::apiResource('/holidays', 'api\HolidayController');
+Route::get('/holidays', 'api\HolidayController@index');
+Route::post('/holidays', 'api\HolidayController@store');
+Route::post('/holidays/{holiday}/update', 'api\HolidayController@update');
+Route::post('/holidays/{holiday}/destroy', 'api\HolidayController@destroy');
 
 //   Missions Routes
-Route::apiResource('/missions', 'api\MissionController');
+Route::get('/missions', 'api\MissionController@index');
+Route::post('/missions', 'api\MissionController@store');
 Route::get('/users/missions/hr', 'api\MissionController@hr');
 Route::get('/users/missions/manager-change-status/{mission}', 'api\MissionController@managerChangeStatus');
 Route::get('/users/missions/hr-change-status/{mission}', 'api\MissionController@HrChangeStatus');
 
 //   Vacations Routes
-Route::apiResource('/vacations', 'api\VacationController');
+Route::get('/vacations', 'api\VacationController@index');
+Route::post('/vacations', 'api\VacationController@store');
 Route::get('/users/vacations/hr', 'api\VacationController@hr');
 Route::get('/users/vacations/manager-change-status/{vacation}', 'api\VacationController@managerChangeStatus');
 Route::get('/users/vacations/hr-change-status/{vacation}', 'api\VacationController@HrChangeStatus');
 
 //   requests forms Routes
-Route::apiResource('/requests/forms', 'api\RequestFormController');
+Route::get('/requests/forms', 'api\RequestFormController@index');
+Route::post('/requests/forms', 'api\RequestFormController@store');
+Route::post('/requests/forms/{form}/update', 'api\RequestFormController@update');
+//Route::post('/requests/forms/{form}/destroy', 'api\RequestFormController@destroy');
 
 //   requests form elements Routes
-Route::apiResource('/requests/{form}/elements', 'api\RequestElementController');
+Route::get('/requests/{form}/elements', 'api\RequestElementController@index');
+Route::post('/requests/{form}/elements', 'api\RequestElementController@store');
+Route::post('/elements/{element}/update', 'api\RequestElementController@update');
+Route::post('/elements/{element}/destroy', 'api\RequestElementController@destroy');
 
 //   requests tasks Routes
-Route::apiResource('/request/tasks', 'api\TaskController');
+//Route::apiResource('/request/tasks', 'api\TaskController');
+Route::get('/request/tasks', 'api\TaskController@index');
+Route::post('/request/tasks', 'api\TaskController@store');
+Route::post('/request/tasks/{task}/update', 'api\RequestElementController@update');
+Route::post('/request/tasks/{task}/destroy', 'api\RequestElementController@destroy');
 Route::get('/tasks/user/requests', 'api\TaskController@userRequests');
 Route::get('/tasks/accounts/reviews', 'api\TaskController@accountsReviews');
 Route::post('/tasks/accounts/{task}/change-status', 'api\TaskController@changeStatus');

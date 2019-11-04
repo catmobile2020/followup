@@ -6,6 +6,127 @@
     },
     "basePath": "/api",
     "paths": {
+        "/post/{post}/comments": {
+            "get": {
+                "tags": [
+                    "comments"
+                ],
+                "summary": "post comments",
+                "parameters": [
+                    {
+                        "name": "post",
+                        "in": "path",
+                        "required": true,
+                        "type": "integer",
+                        "format": "integer"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "objects"
+                    }
+                }
+            },
+            "post": {
+                "tags": [
+                    "comments"
+                ],
+                "summary": "add new comment",
+                "parameters": [
+                    {
+                        "name": "post",
+                        "in": "path",
+                        "required": true,
+                        "type": "integer",
+                        "format": "integer"
+                    },
+                    {
+                        "name": "user_id",
+                        "in": "formData",
+                        "required": true,
+                        "type": "integer",
+                        "format": "integer"
+                    },
+                    {
+                        "name": "body",
+                        "in": "formData",
+                        "required": true,
+                        "type": "string",
+                        "format": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "objects"
+                    }
+                }
+            }
+        },
+        "comment/{comment}/update": {
+            "post": {
+                "tags": [
+                    "comments"
+                ],
+                "summary": "update comment",
+                "parameters": [
+                    {
+                        "name": "comment",
+                        "in": "path",
+                        "required": true,
+                        "type": "integer",
+                        "format": "integer"
+                    },
+                    {
+                        "name": "user_id",
+                        "in": "formData",
+                        "required": true,
+                        "type": "integer",
+                        "format": "integer"
+                    },
+                    {
+                        "name": "body",
+                        "in": "formData",
+                        "required": true,
+                        "type": "string",
+                        "format": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "objects"
+                    }
+                }
+            }
+        },
+        "comment/{comment}/delete": {
+            "post": {
+                "tags": [
+                    "comments"
+                ],
+                "summary": "delete comment",
+                "parameters": [
+                    {
+                        "name": "comment",
+                        "in": "path",
+                        "required": true,
+                        "type": "integer",
+                        "format": "integer"
+                    },
+                    {
+                        "name": "user_id",
+                        "in": "formData",
+                        "required": true,
+                        "type": "integer",
+                        "format": "integer"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "objects"
+                    }
+                }
+            }
+        },
         "/reset-password": {
             "post": {
                 "tags": [
@@ -25,6 +146,207 @@
                 "responses": {
                     "200": {
                         "description": "success"
+                    }
+                }
+            }
+        },
+        "/holidays": {
+            "get": {
+                "tags": [
+                    "holidays"
+                ],
+                "summary": "Get all holidays",
+                "responses": {
+                    "200": {
+                        "description": "objects"
+                    }
+                }
+            },
+            "post": {
+                "tags": [
+                    "holidays"
+                ],
+                "summary": "add new holiday",
+                "parameters": [
+                    {
+                        "name": "title",
+                        "in": "formData",
+                        "required": true,
+                        "type": "string",
+                        "format": "string"
+                    },
+                    {
+                        "name": "date",
+                        "in": "formData",
+                        "description": "2019-10-14",
+                        "required": true,
+                        "type": "string",
+                        "format": "string"
+                    },
+                    {
+                        "name": "active",
+                        "in": "formData",
+                        "description": "(1,2))",
+                        "required": true,
+                        "type": "integer",
+                        "format": "integer"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "objects"
+                    }
+                }
+            }
+        },
+        "/holidays/{holiday}/update": {
+            "post": {
+                "tags": [
+                    "holidays"
+                ],
+                "summary": "update holiday",
+                "parameters": [
+                    {
+                        "name": "holiday",
+                        "in": "path",
+                        "required": true,
+                        "type": "integer",
+                        "format": "integer"
+                    },
+                    {
+                        "name": "title",
+                        "in": "formData",
+                        "required": true,
+                        "type": "string",
+                        "format": "string"
+                    },
+                    {
+                        "name": "date",
+                        "in": "formData",
+                        "description": "2019-10-14",
+                        "required": true,
+                        "type": "string",
+                        "format": "string"
+                    },
+                    {
+                        "name": "active",
+                        "in": "formData",
+                        "description": "(1,2))",
+                        "required": true,
+                        "type": "integer",
+                        "format": "integer"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "objects"
+                    }
+                }
+            }
+        },
+        "/holidays/{holiday}/destroy": {
+            "post": {
+                "tags": [
+                    "holidays"
+                ],
+                "summary": "delete holiday",
+                "parameters": [
+                    {
+                        "name": "holiday",
+                        "in": "path",
+                        "required": true,
+                        "type": "integer",
+                        "format": "integer"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "objects"
+                    }
+                }
+            }
+        },
+        "/post/{post}/likes": {
+            "get": {
+                "tags": [
+                    "likes"
+                ],
+                "summary": "post likes",
+                "parameters": [
+                    {
+                        "name": "post",
+                        "in": "path",
+                        "required": true,
+                        "type": "integer",
+                        "format": "integer"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "objects"
+                    }
+                }
+            },
+            "post": {
+                "tags": [
+                    "likes"
+                ],
+                "summary": "add like",
+                "parameters": [
+                    {
+                        "name": "post",
+                        "in": "path",
+                        "required": true,
+                        "type": "integer",
+                        "format": "integer"
+                    },
+                    {
+                        "name": "user_id",
+                        "in": "formData",
+                        "required": true,
+                        "type": "integer",
+                        "format": "integer"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "objects"
+                    }
+                }
+            }
+        },
+        "/like/{like}/delete": {
+            "post": {
+                "tags": [
+                    "likes"
+                ],
+                "summary": "delete like",
+                "parameters": [
+                    {
+                        "name": "like",
+                        "in": "path",
+                        "required": true,
+                        "type": "integer",
+                        "format": "integer"
+                    },
+                    {
+                        "name": "user_id",
+                        "in": "formData",
+                        "required": true,
+                        "type": "integer",
+                        "format": "integer"
+                    },
+                    {
+                        "name": "post_id",
+                        "in": "formData",
+                        "required": true,
+                        "type": "integer",
+                        "format": "integer"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "objects"
                     }
                 }
             }
@@ -56,6 +378,681 @@
                 "responses": {
                     "200": {
                         "description": "user Data"
+                    }
+                }
+            }
+        },
+        "/missions": {
+            "get": {
+                "tags": [
+                    "missions"
+                ],
+                "summary": "Get all missions",
+                "parameters": [
+                    {
+                        "name": "user_id",
+                        "in": "formData",
+                        "required": true,
+                        "type": "integer",
+                        "format": "integer"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "objects"
+                    }
+                }
+            },
+            "post": {
+                "tags": [
+                    "missions"
+                ],
+                "summary": "add New mission",
+                "parameters": [
+                    {
+                        "name": "user_id",
+                        "in": "formData",
+                        "required": true,
+                        "type": "integer",
+                        "format": "integer"
+                    },
+                    {
+                        "name": "reason",
+                        "in": "formData",
+                        "required": true,
+                        "type": "string",
+                        "format": "string"
+                    },
+                    {
+                        "name": "date_from",
+                        "in": "formData",
+                        "description": "2019-10-14",
+                        "required": true,
+                        "type": "string",
+                        "format": "string"
+                    },
+                    {
+                        "name": "date_to",
+                        "in": "formData",
+                        "description": "2019-10-14",
+                        "required": true,
+                        "type": "string",
+                        "format": "string"
+                    },
+                    {
+                        "name": "type",
+                        "in": "formData",
+                        "description": "type(morning,evening,all_day)]",
+                        "required": true,
+                        "type": "string",
+                        "format": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "objects"
+                    }
+                }
+            }
+        },
+        "users/missions/hr": {
+            "get": {
+                "tags": [
+                    "missions"
+                ],
+                "summary": "HR Get All Members missions ",
+                "responses": {
+                    "200": {
+                        "description": "objects"
+                    }
+                }
+            }
+        },
+        "/users/missions/manager-change-status/{mission}": {
+            "get": {
+                "tags": [
+                    "missions"
+                ],
+                "summary": "Team Manager Change mission Status ",
+                "parameters": [
+                    {
+                        "name": "mission",
+                        "in": "path",
+                        "required": true,
+                        "type": "integer",
+                        "format": "integer"
+                    },
+                    {
+                        "name": "active",
+                        "in": "formData",
+                        "required": true,
+                        "type": "integer",
+                        "format": "integer"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "objects"
+                    }
+                }
+            }
+        },
+        "/users/missions/hr-change-status/{mission}": {
+            "get": {
+                "tags": [
+                    "missions"
+                ],
+                "summary": "HR  Change mission Status",
+                "parameters": [
+                    {
+                        "name": "mission",
+                        "in": "path",
+                        "required": true,
+                        "type": "integer",
+                        "format": "integer"
+                    },
+                    {
+                        "name": "hr_active",
+                        "in": "formData",
+                        "required": true,
+                        "type": "integer",
+                        "format": "integer"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "objects"
+                    }
+                }
+            }
+        },
+        "/posts": {
+            "get": {
+                "tags": [
+                    "posts"
+                ],
+                "summary": "Get all posts",
+                "responses": {
+                    "200": {
+                        "description": "objects"
+                    }
+                }
+            },
+            "post": {
+                "tags": [
+                    "posts"
+                ],
+                "summary": "add new post",
+                "parameters": [
+                    {
+                        "name": "user_id",
+                        "in": "formData",
+                        "required": true,
+                        "type": "integer",
+                        "format": "integer"
+                    },
+                    {
+                        "name": "body",
+                        "in": "formData",
+                        "required": true,
+                        "type": "string",
+                        "format": "string"
+                    },
+                    {
+                        "name": "image",
+                        "in": "formData",
+                        "required": true,
+                        "type": "file"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "objects"
+                    }
+                }
+            }
+        },
+        "/corporate-posts": {
+            "post": {
+                "tags": [
+                    "posts"
+                ],
+                "summary": "corporate-posts",
+                "parameters": [
+                    {
+                        "name": "user_id",
+                        "in": "formData",
+                        "required": true,
+                        "type": "integer",
+                        "format": "integer"
+                    },
+                    {
+                        "name": "body",
+                        "in": "formData",
+                        "required": true,
+                        "type": "string",
+                        "format": "string"
+                    },
+                    {
+                        "name": "image",
+                        "in": "formData",
+                        "required": true,
+                        "type": "file"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "objects"
+                    }
+                }
+            }
+        },
+        "/update-post/{post}": {
+            "post": {
+                "tags": [
+                    "posts"
+                ],
+                "summary": "update-post",
+                "parameters": [
+                    {
+                        "name": "post",
+                        "in": "path",
+                        "required": true,
+                        "type": "integer",
+                        "format": "integer"
+                    },
+                    {
+                        "name": "user_id",
+                        "in": "formData",
+                        "required": true,
+                        "type": "integer",
+                        "format": "integer"
+                    },
+                    {
+                        "name": "body",
+                        "in": "formData",
+                        "required": true,
+                        "type": "string",
+                        "format": "string"
+                    },
+                    {
+                        "name": "image",
+                        "in": "formData",
+                        "required": true,
+                        "type": "file"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "objects"
+                    }
+                }
+            }
+        },
+        "/delete-post/{post}": {
+            "post": {
+                "tags": [
+                    "posts"
+                ],
+                "summary": "delete-post",
+                "parameters": [
+                    {
+                        "name": "post",
+                        "in": "path",
+                        "required": true,
+                        "type": "integer",
+                        "format": "integer"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "objects"
+                    }
+                }
+            }
+        },
+        "/user/{user}/posts": {
+            "post": {
+                "tags": [
+                    "posts"
+                ],
+                "summary": "user posts",
+                "parameters": [
+                    {
+                        "name": "user",
+                        "in": "path",
+                        "required": true,
+                        "type": "integer",
+                        "format": "integer"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "objects"
+                    }
+                }
+            }
+        },
+        "/comment/{comment}/replies": {
+            "get": {
+                "tags": [
+                    "replies"
+                ],
+                "summary": "comment replies",
+                "parameters": [
+                    {
+                        "name": "comment",
+                        "in": "path",
+                        "required": true,
+                        "type": "integer",
+                        "format": "integer"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "objects"
+                    }
+                }
+            },
+            "post": {
+                "tags": [
+                    "replies"
+                ],
+                "summary": "add new replie",
+                "parameters": [
+                    {
+                        "name": "comment",
+                        "in": "path",
+                        "required": true,
+                        "type": "integer",
+                        "format": "integer"
+                    },
+                    {
+                        "name": "user_id",
+                        "in": "formData",
+                        "required": true,
+                        "type": "integer",
+                        "format": "integer"
+                    },
+                    {
+                        "name": "body",
+                        "in": "formData",
+                        "required": true,
+                        "type": "string",
+                        "format": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "objects"
+                    }
+                }
+            }
+        },
+        "/reply/{reply}/update": {
+            "post": {
+                "tags": [
+                    "replies"
+                ],
+                "summary": "update replie",
+                "parameters": [
+                    {
+                        "name": "reply",
+                        "in": "path",
+                        "required": true,
+                        "type": "integer",
+                        "format": "integer"
+                    },
+                    {
+                        "name": "user_id",
+                        "in": "formData",
+                        "required": true,
+                        "type": "integer",
+                        "format": "integer"
+                    },
+                    {
+                        "name": "body",
+                        "in": "formData",
+                        "required": true,
+                        "type": "string",
+                        "format": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "objects"
+                    }
+                }
+            }
+        },
+        "/reply/{reply}/delete": {
+            "post": {
+                "tags": [
+                    "replies"
+                ],
+                "summary": "delete replie",
+                "parameters": [
+                    {
+                        "name": "reply",
+                        "in": "path",
+                        "required": true,
+                        "type": "integer",
+                        "format": "integer"
+                    },
+                    {
+                        "name": "user_id",
+                        "in": "formData",
+                        "required": true,
+                        "type": "integer",
+                        "format": "integer"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "objects"
+                    }
+                }
+            }
+        },
+        "/requests/{form}/elements": {
+            "get": {
+                "tags": [
+                    "forms elements"
+                ],
+                "summary": "Get form elements",
+                "parameters": [
+                    {
+                        "name": "form",
+                        "in": "path",
+                        "required": true,
+                        "type": "integer",
+                        "format": "integer"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "objects"
+                    }
+                }
+            },
+            "post": {
+                "tags": [
+                    "forms elements"
+                ],
+                "summary": "add New element",
+                "parameters": [
+                    {
+                        "name": "form",
+                        "in": "path",
+                        "required": true,
+                        "type": "integer",
+                        "format": "integer"
+                    },
+                    {
+                        "name": "title",
+                        "in": "formData",
+                        "required": true,
+                        "type": "string",
+                        "format": "string"
+                    },
+                    {
+                        "name": "type",
+                        "in": "formData",
+                        "description": "type(text, select, checkbox)",
+                        "type": "string",
+                        "format": "string"
+                    },
+                    {
+                        "name": "value",
+                        "in": "formData",
+                        "type": "string",
+                        "format": "string"
+                    },
+                    {
+                        "name": "validation",
+                        "in": "formData",
+                        "description": "validation(1,0)",
+                        "type": "integer",
+                        "format": "integer"
+                    },
+                    {
+                        "name": "placeholder",
+                        "in": "formData",
+                        "type": "string",
+                        "format": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "objects"
+                    }
+                }
+            }
+        },
+        "/elements/{element}/update": {
+            "post": {
+                "tags": [
+                    "forms elements"
+                ],
+                "summary": "add update element",
+                "parameters": [
+                    {
+                        "name": "element",
+                        "in": "path",
+                        "required": true,
+                        "type": "integer",
+                        "format": "integer"
+                    },
+                    {
+                        "name": "title",
+                        "in": "formData",
+                        "required": true,
+                        "type": "string",
+                        "format": "string"
+                    },
+                    {
+                        "name": "type",
+                        "in": "formData",
+                        "description": "type(text, select, checkbox)",
+                        "type": "string",
+                        "format": "string"
+                    },
+                    {
+                        "name": "value",
+                        "in": "formData",
+                        "type": "string",
+                        "format": "string"
+                    },
+                    {
+                        "name": "validation",
+                        "in": "formData",
+                        "description": "validation(1,0)",
+                        "type": "integer",
+                        "format": "integer"
+                    },
+                    {
+                        "name": "placeholder",
+                        "in": "formData",
+                        "type": "string",
+                        "format": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "objects"
+                    }
+                }
+            }
+        },
+        "/elements/{element}/destroy": {
+            "post": {
+                "tags": [
+                    "forms elements"
+                ],
+                "summary": "delete element",
+                "parameters": [
+                    {
+                        "name": "element",
+                        "in": "path",
+                        "required": true,
+                        "type": "integer",
+                        "format": "integer"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "objects"
+                    }
+                }
+            }
+        },
+        "/requests/forms": {
+            "get": {
+                "tags": [
+                    "requests forms"
+                ],
+                "summary": "Get All Forms",
+                "parameters": [
+                    {
+                        "name": "user_id",
+                        "in": "formData",
+                        "required": true,
+                        "type": "integer",
+                        "format": "integer"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "objects"
+                    }
+                }
+            },
+            "post": {
+                "tags": [
+                    "requests forms"
+                ],
+                "summary": "add New form",
+                "parameters": [
+                    {
+                        "name": "user_id",
+                        "in": "formData",
+                        "required": true,
+                        "type": "integer",
+                        "format": "integer"
+                    },
+                    {
+                        "name": "title",
+                        "in": "formData",
+                        "required": true,
+                        "type": "string",
+                        "format": "string"
+                    },
+                    {
+                        "name": "team_id",
+                        "in": "formData",
+                        "type": "integer",
+                        "format": "integer"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "objects"
+                    }
+                }
+            }
+        },
+        "/requests/forms/{form}/update": {
+            "post": {
+                "tags": [
+                    "requests forms"
+                ],
+                "summary": "add update form",
+                "parameters": [
+                    {
+                        "name": "form",
+                        "in": "path",
+                        "required": true,
+                        "type": "integer",
+                        "format": "integer"
+                    },
+                    {
+                        "name": "user_id",
+                        "in": "formData",
+                        "required": true,
+                        "type": "integer",
+                        "format": "integer"
+                    },
+                    {
+                        "name": "title",
+                        "in": "formData",
+                        "required": true,
+                        "type": "string",
+                        "format": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "objects"
                     }
                 }
             }
@@ -161,6 +1158,200 @@
                 "responses": {
                     "200": {
                         "description": "object"
+                    }
+                }
+            }
+        },
+        "/request/tasks": {
+            "get": {
+                "tags": [
+                    "request tasks"
+                ],
+                "summary": "Get all tasks",
+                "parameters": [
+                    {
+                        "name": "user_id",
+                        "in": "formData",
+                        "required": true,
+                        "type": "integer",
+                        "format": "integer"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "objects"
+                    }
+                }
+            },
+            "post": {
+                "tags": [
+                    "request tasks"
+                ],
+                "summary": "Add New task",
+                "parameters": [
+                    {
+                        "name": "user_id",
+                        "in": "formData",
+                        "required": true,
+                        "type": "integer",
+                        "format": "integer"
+                    },
+                    {
+                        "name": "po",
+                        "in": "formData",
+                        "required": true,
+                        "type": "string",
+                        "format": "string"
+                    },
+                    {
+                        "name": "request_form_id",
+                        "in": "formData",
+                        "required": true,
+                        "type": "integer",
+                        "format": "integer"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "objects"
+                    }
+                }
+            }
+        },
+        "/tasks/user/requests": {
+            "get": {
+                "tags": [
+                    "request tasks"
+                ],
+                "summary": "Get user tasks",
+                "parameters": [
+                    {
+                        "name": "user_id",
+                        "in": "formData",
+                        "required": true,
+                        "type": "integer",
+                        "format": "integer"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "objects"
+                    }
+                }
+            }
+        },
+        "/tasks/accounts/reviews": {
+            "get": {
+                "tags": [
+                    "request tasks"
+                ],
+                "summary": "Get accounts tasks reviews",
+                "parameters": [
+                    {
+                        "name": "user_id",
+                        "in": "formData",
+                        "required": true,
+                        "type": "integer",
+                        "format": "integer"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "objects"
+                    }
+                }
+            }
+        },
+        "/tasks/accounts/{task}/change-status": {
+            "post": {
+                "tags": [
+                    "request tasks"
+                ],
+                "summary": "account task change status",
+                "parameters": [
+                    {
+                        "name": "task",
+                        "in": "path",
+                        "required": true,
+                        "type": "integer",
+                        "format": "integer"
+                    },
+                    {
+                        "name": "active",
+                        "in": "formData",
+                        "required": true,
+                        "type": "integer",
+                        "format": "integer"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "objects"
+                    }
+                }
+            }
+        },
+        "/request/tasks/{task}/update": {
+            "post": {
+                "tags": [
+                    "request tasks"
+                ],
+                "summary": "update task",
+                "parameters": [
+                    {
+                        "name": "task",
+                        "in": "path",
+                        "required": true,
+                        "type": "integer",
+                        "format": "integer"
+                    },
+                    {
+                        "name": "user_id",
+                        "in": "formData",
+                        "required": true,
+                        "type": "integer",
+                        "format": "integer"
+                    },
+                    {
+                        "name": "po",
+                        "in": "formData",
+                        "required": true,
+                        "type": "string",
+                        "format": "string"
+                    },
+                    {
+                        "name": "request_form_id",
+                        "in": "formData",
+                        "required": true,
+                        "type": "integer",
+                        "format": "integer"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "objects"
+                    }
+                }
+            }
+        },
+        "/request/tasks/{task}/destroy": {
+            "post": {
+                "tags": [
+                    "request tasks"
+                ],
+                "summary": "update task",
+                "parameters": [
+                    {
+                        "name": "task",
+                        "in": "path",
+                        "required": true,
+                        "type": "integer",
+                        "format": "integer"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "objects"
                     }
                 }
             }
@@ -562,6 +1753,135 @@
                 "responses": {
                     "200": {
                         "description": "user"
+                    }
+                }
+            }
+        },
+        "/vacations": {
+            "get": {
+                "tags": [
+                    "vacations"
+                ],
+                "summary": "Get all vacations",
+                "parameters": [
+                    {
+                        "name": "user_id",
+                        "in": "formData",
+                        "required": true,
+                        "type": "integer",
+                        "format": "integer"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "objects"
+                    }
+                }
+            },
+            "post": {
+                "tags": [
+                    "vacations"
+                ],
+                "summary": "add New vacation",
+                "parameters": [
+                    {
+                        "name": "user_id",
+                        "in": "formData",
+                        "required": true,
+                        "type": "integer",
+                        "format": "integer"
+                    },
+                    {
+                        "name": "date_from",
+                        "in": "formData",
+                        "description": "2019-10-14",
+                        "required": true,
+                        "type": "string",
+                        "format": "string"
+                    },
+                    {
+                        "name": "date_to",
+                        "in": "formData",
+                        "description": "2019-10-14",
+                        "required": true,
+                        "type": "string",
+                        "format": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "objects"
+                    }
+                }
+            }
+        },
+        "/users/vacations/hr": {
+            "get": {
+                "tags": [
+                    "vacations"
+                ],
+                "summary": "HR Get All Members vacation ",
+                "responses": {
+                    "200": {
+                        "description": "objects"
+                    }
+                }
+            }
+        },
+        "/users/vacations/manager-change-status/{vacation}": {
+            "get": {
+                "tags": [
+                    "vacations"
+                ],
+                "summary": "Team Manager Change vacation Status ",
+                "parameters": [
+                    {
+                        "name": "vacation",
+                        "in": "path",
+                        "required": true,
+                        "type": "integer",
+                        "format": "integer"
+                    },
+                    {
+                        "name": "active",
+                        "in": "formData",
+                        "required": true,
+                        "type": "integer",
+                        "format": "integer"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "objects"
+                    }
+                }
+            }
+        },
+        "/users/vacations/hr-change-status/{vacation}": {
+            "get": {
+                "tags": [
+                    "vacations"
+                ],
+                "summary": "HR  Change vacation Status",
+                "parameters": [
+                    {
+                        "name": "vacation",
+                        "in": "path",
+                        "required": true,
+                        "type": "integer",
+                        "format": "integer"
+                    },
+                    {
+                        "name": "hr_active",
+                        "in": "formData",
+                        "required": true,
+                        "type": "integer",
+                        "format": "integer"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "objects"
                     }
                 }
             }

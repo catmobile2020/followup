@@ -11,9 +11,22 @@ use App\Http\Controllers\Controller;
 class CommentController extends Controller
 {
     /**
-     * Display a listing of the resource.
      *
-     * @return \Illuminate\Http\Response
+     * @SWG\Get(
+     *      tags={"comments"},
+     *      path="/post/{post}/comments",
+     *      summary="post comments",
+     *      @SWG\Parameter(
+     *         name="post",
+     *         in="path",
+     *         required=true,
+     *         type="integer",
+     *         format="integer",
+     *      ),
+     *      @SWG\Response(response=200, description="objects"),
+     * ),
+     * @param Post $post
+     * @return \Illuminate\Http\JsonResponse
      */
     public function index(Post $post)
     {
@@ -22,13 +35,36 @@ class CommentController extends Controller
         return response()->json(['data'=> $post->comments()->paginate(10), "state"=>1]);
     }
 
-
-
     /**
-     * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
+     * @SWG\Post(
+     *      tags={"comments"},
+     *      path="/post/{post}/comments",
+     *      summary="add new comment",
+     *      @SWG\Parameter(
+     *         name="post",
+     *         in="path",
+     *         required=true,
+     *         type="integer",
+     *         format="integer",
+     *      ),@SWG\Parameter(
+     *         name="user_id",
+     *         in="formData",
+     *         required=true,
+     *         type="integer",
+     *         format="integer",
+     *      ),@SWG\Parameter(
+     *         name="body",
+     *         in="formData",
+     *         required=true,
+     *         type="string",
+     *         format="string",
+     *      ),
+     *      @SWG\Response(response=200, description="objects"),
+     * ),
+     * @param Request $request
+     * @param Post $post
+     * @return \Illuminate\Http\JsonResponse
      */
     public function store(Request $request, Post $post)
     {
@@ -57,11 +93,35 @@ class CommentController extends Controller
     }
 
     /**
-     * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Comment  $comment
-     * @return \Illuminate\Http\Response
+     * @SWG\Post(
+     *      tags={"comments"},
+     *      path="comment/{comment}/update",
+     *      summary="update comment",
+     *      @SWG\Parameter(
+     *         name="comment",
+     *         in="path",
+     *         required=true,
+     *         type="integer",
+     *         format="integer",
+     *      ),@SWG\Parameter(
+     *         name="user_id",
+     *         in="formData",
+     *         required=true,
+     *         type="integer",
+     *         format="integer",
+     *      ),@SWG\Parameter(
+     *         name="body",
+     *         in="formData",
+     *         required=true,
+     *         type="string",
+     *         format="string",
+     *      ),
+     *      @SWG\Response(response=200, description="objects"),
+     * ),
+     * @param Request $request
+     * @param Comment $comment
+     * @return \Illuminate\Http\JsonResponse
      */
     public function update(Request $request, Comment $comment)
     {
@@ -111,10 +171,30 @@ class CommentController extends Controller
     }
 
     /**
-     * Remove the specified resource from storage.
      *
-     * @param  \App\Comment  $comment
-     * @return \Illuminate\Http\Response
+     * @SWG\Post(
+     *      tags={"comments"},
+     *      path="comment/{comment}/delete",
+     *      summary="delete comment",
+     *      @SWG\Parameter(
+     *         name="comment",
+     *         in="path",
+     *         required=true,
+     *         type="integer",
+     *         format="integer",
+     *      ),@SWG\Parameter(
+     *         name="user_id",
+     *         in="formData",
+     *         required=true,
+     *         type="integer",
+     *         format="integer",
+     *      ),
+     *      @SWG\Response(response=200, description="objects"),
+     * ),
+     * @param Request $request
+     * @param Comment $comment
+     * @return \Illuminate\Http\JsonResponse
+     * @throws \Exception
      */
     public function destroy(Request $request, Comment $comment)
     {
