@@ -5,6 +5,7 @@ namespace App\Http\Controllers\api;
 use App\Photo;
 use App\Post;
 use App\User;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Traits\ApiResponser;
@@ -19,35 +20,42 @@ class PostController extends Controller
      *      tags={"posts"},
      *      path="/posts",
      *      summary="Get all posts",
+     *      @SWG\Parameter(
+     *         name="user_id",
+     *         in="query",
+     *         type="integer",
+     *      ),
      *
      *      @SWG\Response(response=200, description="objects"),
      * )
+     * @param Request $request
+     * @return \Illuminate\Http\JsonResponse
      */
-    public function index()
+    public function index(Request $request)
     {
+        $user_id =$request->user_id;
         if(empty($_GET['page']) || $_GET['page']==''){
             $posts = Post::orderBY('id', 'desc')->get();
-            foreach ($posts as $post){
-
-                $profile = Photo::where('imageable_id',$post->user_id)->where('imageable_type','App\User')->get();
-
-                $post->profile_picture = implode(',', $profile->pluck('path')->all());
-                $user_name = $post->user()->pluck('name')->all();
-                $post->user = implode(",", $user_name);
-                //$pictures = $user->photos->only(['path'])->get;
-                $post = $post->photos;
-            }
         }else{
             $posts = Post::orderBY('id', 'desc')->paginate(10);
-            foreach ($posts as $post){
-                $profile = Photo::where('imageable_id',$post->user_id)->where('imageable_type','App\User')->get();
+        }
 
-                $post->profile_picture = implode(',', $profile->pluck('path')->all());
-                $user_name = $post->user()->pluck('name')->all();
-                $post->user = implode(",", $user_name);
-                $post = $post->photos;
+        foreach ($posts as $post){
+            $profile = Photo::where('imageable_id',$post->user_id)->where('imageable_type','App\User')->get();
+
+            $post->profile_picture = implode(',', $profile->pluck('path')->all());
+            $user_name = $post->user()->pluck('name')->all();
+            $post->user = implode(",", $user_name);
+            $post->photos;
+            $last_comments = $post->comments()->latest()->take(3)->get();
+            foreach ($last_comments as $last_comment)
+            {
+                $last_comment->user->photos[0];
+                $last_comment->create_at = $last_comment->created_at->diffForHumans();
             }
-            return response()->json(['data' => $posts, 'state' => 1], 200);
+            $post->last_comments = $last_comments;
+            if ($user_id)
+                $post->post_liked = in_array($user_id,$post->likes()->pluck('user_id')->toArray());
         }
         return $this->showAll($posts);
 

@@ -532,6 +532,13 @@
                     "posts"
                 ],
                 "summary": "Get all posts",
+                "parameters": [
+                    {
+                        "name": "user_id",
+                        "in": "query",
+                        "type": "integer"
+                    }
+                ],
                 "responses": {
                     "200": {
                         "description": "objects"
